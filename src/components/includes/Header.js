@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Menubar from './Menubar';
 
 const HeaderLayout = styled.header`
   display: flex;
@@ -25,10 +26,13 @@ const Search = styled.div`
 
 const Header = () => {
   return (
-    <HeaderLayout>
-      <Logo>JobsAlrt</Logo>
-      <Search>search...</Search>
-    </HeaderLayout>
+    <>
+      <HeaderLayout>
+        <Logo>JobsAlrt</Logo>
+        <Search>search...</Search>
+      </HeaderLayout>
+      <Menubar />
+    </>
   );
 };
 
