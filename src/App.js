@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/includes/Header.js';
-import Menubar from './components/includes/Menubar.js';
+import Header from './components/includes/Header';
+import Menubar from './components/includes/Menubar';
+import Footer from './components/includes/Footer';
 import './app.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <Router>
       <Header />
       <Menubar />
+      <Footer />
     </Router>
   );
 }
