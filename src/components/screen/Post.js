@@ -30,7 +30,7 @@ const Post = ({ match }) => {
       setIsLoading(false);
     };
     fetchPost();
-  }, []);
+  }, [id]);
 
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;
