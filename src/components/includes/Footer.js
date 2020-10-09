@@ -70,7 +70,10 @@ const Footer = () => {
         keep visiting our site for fresh content. JobsAlrt is trying to bring
         innovative features for our users, like use of filters to find jobs
         easily, alerts on your mobile for a particular job and many more. Hope
-        you will find JobsAlrt's efforts useful and will keep supporting us. 🙂
+        you will find JobsAlrt's efforts useful and will keep supporting us.{' '}
+        <span role="img" aria-label="smile">
+          🙂
+        </span>
       </Statement>
       <FooterLayout>
         <SectionLayout>
