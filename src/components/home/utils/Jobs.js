@@ -9,6 +9,11 @@ const Section = styled.section`
   margin: 8px;
   width: 32%;
   background: #efefef;
+  @media only screen and (max-width: 420px) {
+    & {
+      width: 100%;
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -23,10 +28,20 @@ const Title = styled.h1`
 
 const List = styled.ul`
   padding: 4px 32px;
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 4px 20px;
+    }
+  }
 `;
 
 const ListItem = styled.li`
   padding: 4px;
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 2px 0;
+    }
+  }
 `;
 
 const Link = styled.a`

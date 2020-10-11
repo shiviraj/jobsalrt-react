@@ -21,6 +21,16 @@ const NavLayout = styled.nav`
     border-bottom: 1px solid #ccc;
     margin-bottom: -1px;
   }
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 0 4px;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    & a {
+      padding: 2px 8px;
+    }
+  }
 `;
 
 const HomeNavBar = () => {
@@ -30,7 +40,7 @@ const HomeNavBar = () => {
         Category Wise
       </NavLink>
       <NavLink to="/home/location">Location Wise</NavLink>
-      <NavLink to="/home/company">Department/Company Wise</NavLink>
+      <NavLink to="/home/company">Department / Company Wise</NavLink>
       <NavLink to="/home/qualification">Qualification Wise</NavLink>
       <NavLink to="/home/vacancy">Vacancy Wise</NavLink>
     </NavLayout>

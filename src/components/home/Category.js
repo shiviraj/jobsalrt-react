@@ -7,6 +7,11 @@ const Sections = styled.section`
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 16px 8px;
+  @media only screen and (max-width: 420px) {
+    & {
+      margin: 4px 2px;
+    }
+  }
 `;
 
 const Category = () => {

@@ -8,6 +8,11 @@ const Statement = styled.p`
   &:first-letter {
     font-size: 32px;
   }
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 4px 8px;
+    }
+  }
 `;
 
 const FooterLayout = styled.footer`
@@ -18,6 +23,12 @@ const FooterLayout = styled.footer`
 const SectionLayout = styled.section`
   display: flex;
   justify-content: space-around;
+  @media only screen and (max-width: 420px) {
+    & {
+      flex-direction: column;
+      padding: 0 16px;
+    }
+  }
 `;
 
 const Section = styled.section`

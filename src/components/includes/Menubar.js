@@ -6,6 +6,11 @@ const Nav = styled.nav`
   display: flex;
   background: #eee;
   box-shadow: 0 2px 4px #0c4da2ef;
+  @media only screen and (max-width: 420px) {
+    & {
+      display: none;
+    }
+  }
 `;
 
 const Link = styled(NavLink)`
