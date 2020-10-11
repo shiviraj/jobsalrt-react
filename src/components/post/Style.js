@@ -12,6 +12,7 @@ const Title = styled.h1`
   padding: 4px;
   font-weight: 500;
   border: 1px solid #0c4da2;
+  text-transform: capitalize;
 `;
 
 const THead = styled.h3`
@@ -33,7 +34,9 @@ const Row = styled.div`
 `;
 
 const Cell = styled.div`
-  width: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
   border-right: 1px solid #0c4da2;
   padding: 4px 16px;
   &:last-child {

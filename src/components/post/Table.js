@@ -14,11 +14,11 @@ const TableHead = ({ data }) => {
 const TableBody = ({ data }) => {
   return (
     <>
-      {data.map((row) => {
+      {data.map((row, rowNo) => {
         return (
           <Row key={row}>
-            {row.map((item) => {
-              return <Cell key={item}>{item}</Cell>;
+            {row.map((item, itemNo) => {
+              return <Cell key={`${item}_${rowNo}_${itemNo}`}>{item}</Cell>;
             })}
           </Row>
         );
@@ -28,11 +28,12 @@ const TableBody = ({ data }) => {
 };
 
 const Table = ({ data, title }) => {
+  if (!data) return <></>;
   const { head, body } = data;
   return (
     <Section>
       <Title>{title}</Title>
-      <TableHead data={head} />
+      {head && <TableHead data={head} />}
       <TableBody data={body} />
     </Section>
   );

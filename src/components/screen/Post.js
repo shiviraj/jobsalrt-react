@@ -16,6 +16,8 @@ const Post = ({ match }) => {
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;
 
+  const { state, ...others } = post.others || {};
+  console.log(post);
   return (
     <article>
       <General data={post.general} title={post.title} />
@@ -23,6 +25,11 @@ const Post = ({ match }) => {
       <Table data={post.application_fee} title="Application Fee" />
       <Table data={post.age_limit_details} title="Age Limit Details" />
       <Table data={post.vacancy_details} title="Vacancy Details" />
+      {Object.keys(others).map((key) => {
+        return (
+          <Table key={key} data={others[key]} title={key.replace(/_/g, ' ')} />
+        );
+      })}
       <Array data={post.selection_process} title="Selection Process" />
       <Array data={post.how_to_apply} title="How To Apply" />
       <ImportantLinks data={post.important_links} />
