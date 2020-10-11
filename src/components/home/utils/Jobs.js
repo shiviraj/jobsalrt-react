@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import useFetch from '../../../hooks/useFetch';
+import React, { useState, useEffect } from 'react';
 import Loader from '../../includes/Loader';
 import styled from 'styled-components';
+import fetchApi from '../../../api/fetchApi';
 
 const Section = styled.section`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
@@ -73,7 +73,15 @@ const ViewMore = styled.a`
 const Jobs = ({ title }) => {
   const [posts, setPosts] = useState(null);
   const type = title.replace(' ', '_').toUpperCase();
-  const isLoading = useFetch({ type }, setPosts);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    fetchApi({ type })
+      .then((result) => {
+        setPosts(result);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
+  }, [type]);
 
   if (isLoading) return <Loader />;
 

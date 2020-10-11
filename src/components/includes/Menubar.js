@@ -6,17 +6,14 @@ const Nav = styled.nav`
   display: flex;
   background: #eee;
   box-shadow: 0 2px 4px #0c4da2ef;
-  @media only screen and (max-width: 420px) {
-    & {
-      display: none;
-    }
-  }
 `;
 
 const Link = styled(NavLink)`
   color: #333;
   padding: 4px 16px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   &:hover {
     background: #c4c4c4;
   }
@@ -27,6 +24,20 @@ const Link = styled(NavLink)`
   }
   &:first-child {
     margin-left: 20px;
+  }
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 2px 4px;
+      font-size: 12px;
+    }
+    &.active {
+      font-weight: 900;
+      color: #fff;
+      background: #333;
+    }
+    &:first-child {
+      margin-left: 2px;
+    }
   }
 `;
 

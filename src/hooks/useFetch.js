@@ -12,7 +12,7 @@ const useFetch = (payload, setResult) => {
       })
       .catch(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [payload]);
 
   return isLoading;
 };
