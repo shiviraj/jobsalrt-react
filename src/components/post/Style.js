@@ -47,6 +47,11 @@ const Cell = styled.div`
   &:last-child {
     border-right: 0;
   }
+  @media only screen and (max-width: 420px) {
+    & {
+      padding: 2px;
+    }
+  }
 `;
 
 const Link = styled.a`

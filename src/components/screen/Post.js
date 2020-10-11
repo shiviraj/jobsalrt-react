@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useFetch from '../../hooks/useFetch';
+import React, { useState, useEffect } from 'react';
+import fetchApi from '../../api/fetchApi';
 import Loader from '../includes/Loader';
 import NotFound from '../includes/NotFound';
 import General from '../post/General';
@@ -11,13 +11,22 @@ import ImportantLinks from '../post/ImportantLinks';
 const Post = ({ match }) => {
   const id = match.params.id;
   const [post, setPost] = useState(null);
-  const isLoading = useFetch({ type: 'FETCH_POST', id }, setPost, id);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchApi({ type: 'FETCH_POST', id })
+      .then((result) => {
+        setPost(result);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
+  }, [id]);
 
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;
 
   const { state, ...others } = post.others || {};
-  console.log(post);
   return (
     <article>
       <General data={post.general} title={post.title} />
