@@ -8,7 +8,7 @@ const Section = styled.section`
 
 const Title = styled.h1`
   color: #fff;
-  background: #0c4da2ef;
+  background: #0c4da2dd;
   padding: 4px;
   font-weight: 500;
   border: 1px solid #0c4da2;

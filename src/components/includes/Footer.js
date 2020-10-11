@@ -12,6 +12,7 @@ const Statement = styled.p`
 
 const FooterLayout = styled.footer`
   background-color: #0c4da2;
+  padding-bottom: 16px;
 `;
 
 const SectionLayout = styled.section`
@@ -38,22 +39,6 @@ const Section = styled.section`
   }
   & a:before {
     content: '• ';
-  }
-`;
-
-const AuthorLayout = styled.div`
-  background-color: #0c4da2;
-  display: flex;
-  justify-content: flex-end;
-  padding: 16px 24px;
-`;
-
-const Author = styled.p`
-  color: #ccc;
-  font-weight: 500;
-  & span {
-    color: #fff;
-    font-weight: 200;
   }
 `;
 
@@ -95,11 +80,6 @@ const Footer = () => {
             <a href="/connect/instagram">Instagram</a>
           </Section>
         </SectionLayout>
-        <AuthorLayout>
-          <Author>
-            <span>Theme developed by:</span> Shivam Rajput
-          </Author>
-        </AuthorLayout>
       </FooterLayout>
     </div>
   );

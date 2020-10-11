@@ -28,9 +28,7 @@ const Link = styled(NavLink)`
 const Menubar = () => {
   return (
     <Nav>
-      <Link to="/" exact>
-        Home
-      </Link>
+      <Link to="/home">Home</Link>
       <Link to="/all-jobs">All Jobs</Link>
       <Link to="/latest-jobs">Latest Jobs</Link>
       <Link to="/admit-card">Admit Card</Link>
