@@ -1,31 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
+import { Section, Title, Row, Cell } from './Style';
 
-const Row = styled.div`
-  display: flex;
-  width: 100%;
-  border-bottom: 1px solid #0c4da2;
-  &:last-child {
-    border-bottom: 0;
-  }
-  &:nth-of-type(2n) {
-    background-color: #eee;
-  }
-`;
-
-const Cell = styled.div`
-  width: 50%;
-  border-right: 1px solid #0c4da2;
-  padding: 4px 16px;
-  &:last-child {
-    border-right: 0;
-  }
-`;
-
-const Table = ({ data }) => {
+const Table = ({ data, title }) => {
   return (
-    <section>
+    <Section>
+      <Title>{title}</Title>
       <Row>
         <Cell>Form Type</Cell>
         <Cell>{data.form_type}</Cell>
@@ -50,7 +30,7 @@ const Table = ({ data }) => {
         <Cell>Qualification Required</Cell>
         <Cell>{data.qualification_required}</Cell>
       </Row>
-    </section>
+    </Section>
   );
 };
 

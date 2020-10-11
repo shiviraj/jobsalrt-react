@@ -2,21 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Loader from '../includes/Loader';
 import NotFound from '../includes/NotFound';
 import fetchApi from '../../api/fetchApi.js';
-import styled from 'styled-components';
 import General from '../post/General';
-
-const PostArticle = styled.article`
-  margin: 32px;
-  border: 1px solid #0c4da2;
-`;
-
-const PostTitle = styled.h1`
-  text-align: center;
-  color: #fff;
-  background: #0c4da2ef;
-  padding: 4px;
-  font-weight: 500;
-`;
+import ImportantDates from '../post/ImportantDates';
+import Table from '../post/Table';
+import Array from '../post/Array';
+import ImportantLinks from '../post/ImportantLinks';
 
 const Post = ({ match }) => {
   const id = match.params.id;
@@ -36,10 +26,16 @@ const Post = ({ match }) => {
   if (!post) return <NotFound />;
 
   return (
-    <PostArticle>
-      <PostTitle>{post.title}</PostTitle>
-      <General data={post.general} />
-    </PostArticle>
+    <article>
+      <General data={post.general} title={post.title} />
+      <ImportantDates data={post.important_dates} />
+      <Table data={post.application_fee} title="Application Fee" />
+      <Table data={post.age_limit_details} title="Age Limit Details" />
+      <Table data={post.vacancy_details} title="Vacancy Details" />
+      <Array data={post.selection_process} title="Selection Process" />
+      <Array data={post.how_to_apply} title="How To Apply" />
+      <ImportantLinks data={post.important_links} />
+    </article>
   );
 };
 

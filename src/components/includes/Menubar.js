@@ -38,7 +38,7 @@ const Menubar = () => {
       <Link to="/answer-key">Answer Key</Link>
       <Link to="/syllabus">Syllabus</Link>
       <Link to="/admission">Admission</Link>
-      <Link to="/post/5f53a9ea149c200017c2022c">Post</Link>
+      <Link to="/post/5f5f547fe879dc190f9e927c">Post</Link>
     </Nav>
   );
 };
