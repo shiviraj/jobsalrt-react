@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useFetch from '../../hooks/useFetch';
 import Loader from '../includes/Loader';
 import NotFound from '../includes/NotFound';
-import fetchApi from '../../api/fetchApi.js';
 import General from '../post/General';
 import ImportantDates from '../post/ImportantDates';
 import Table from '../post/Table';
@@ -10,17 +10,8 @@ import ImportantLinks from '../post/ImportantLinks';
 
 const Post = ({ match }) => {
   const id = match.params.id;
-  const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState(null);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const result = await fetchApi({ type: 'FETCH_POST', id }).catch(() => {});
-      setPost(result);
-      setIsLoading(false);
-    };
-    fetchPost();
-  }, [id]);
+  const isLoading = useFetch({ type: 'FETCH_POST', id }, setPost, id);
 
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;

@@ -6,6 +6,8 @@ const fetchGet = async (url) => {
 
 const fetchApi = (action) => {
   switch (action.type) {
+    case 'ALL_JOBS':
+      return fetchGet(`/api/allJobs`);
     case 'FETCH_POST':
       return fetchGet(`/api/post/${action.id}`);
     default:
