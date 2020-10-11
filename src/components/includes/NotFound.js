@@ -20,7 +20,11 @@ const NotFoundLayout = styled.div`
 `;
 
 const NotFound = () => {
-  return <NotFoundLayout>Oops! 404 Not Found</NotFoundLayout>;
+  return (
+    <NotFoundLayout>
+      Site is under development, we will implement this feature soon!
+    </NotFoundLayout>
+  );
 };
 
 export default NotFound;
