@@ -57,14 +57,17 @@ const AllJobs = (props) => {
     <Section>
       <Title>{type.replace('_', ' ')}</Title>
       <List>
-        {posts &&
+        {isLoading ? (
+          <Loader />
+        ) : (
           posts.map((post) => {
             return (
               <ListItem key={post._id}>
                 <Link href={`/post/${post._id}`}>{post.title}</Link>
               </ListItem>
             );
-          })}
+          })
+        )}
       </List>
     </Section>
   );

@@ -83,20 +83,22 @@ const Jobs = ({ title }) => {
       .catch(() => setIsLoading(false));
   }, [type]);
 
-  if (isLoading) return <Loader />;
-
   return (
     <Section>
       <Title>{title}</Title>
       <List>
-        {posts &&
+        {isLoading ? (
+          <Loader />
+        ) : (
+          posts &&
           posts.map((post) => {
             return (
               <ListItem key={post._id}>
                 <Link href={`/post/${post._id}`}>{post.title}</Link>
               </ListItem>
             );
-          })}
+          })
+        )}
       </List>
       <Footer>
         <ViewMore href={title.replace(' ', '-').toLowerCase()}>
