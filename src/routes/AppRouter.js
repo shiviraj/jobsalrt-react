@@ -7,7 +7,7 @@ const AppRouter = () => {
   return (
     <main>
       <Switch>
-        <Route path="/" component={AllJobs} />
+        <Route path="/" component={AllJobs} exact />
         <Route path="/post/:id" component={Post} />
       </Switch>
     </main>
