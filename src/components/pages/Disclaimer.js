@@ -22,7 +22,7 @@ const PageLayout = styled.div`
   }
 `;
 
-const PrivacyPolicy = () => {
+const Disclaimer = () => {
   return (
     <PageLayout>
       <h1>Disclaimer for Jobs Alrt</h1>
@@ -80,4 +80,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default Disclaimer;

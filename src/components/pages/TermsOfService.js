@@ -22,7 +22,7 @@ const PageLayout = styled.div`
   }
 `;
 
-const PrivacyPolicy = () => {
+const TermsOfService = () => {
   return (
     <PageLayout>
       <h1>Website Terms and Conditions of Use</h1>
@@ -139,4 +139,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default TermsOfService;
