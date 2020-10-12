@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PageRouter from './PageRouter';
 import Post from '../components/screen/Post';
 import Jobs from '../components/screen/Jobs';
 import Home from '../components/screen/Home';
@@ -25,6 +26,7 @@ const AppRouter = () => {
           component={Jobs}
         />
         <Route path="/post/:id" component={Post} />
+        <PageRouter />
         <Route component={NotFound} />
       </Switch>
     </main>

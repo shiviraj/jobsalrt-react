@@ -75,12 +75,13 @@ const Footer = () => {
         <SectionLayout>
           <Section>
             <h3>Important Links</h3>
-            <a href="/page/about-us">About Us</a>
+            <a href="/page/disclaimer">Disclaimer</a>
             <a href="/page/terms-of-service">Terms of Services</a>
             <a href="/page/privacy-policy">Privacy Policy</a>
           </Section>
           <Section>
             <h3>Navigation</h3>
+            <a href="/page/about-us">About Us</a>
             <a href="/page/contact-us">Contact Us</a>
             <a href="/page/share-feedback">Share Feedback</a>
           </Section>
