@@ -43,6 +43,7 @@ const AllJobs = (props) => {
   const [posts, setPosts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     fetchApi({ type })
       .then((result) => {
         setPosts(result);
