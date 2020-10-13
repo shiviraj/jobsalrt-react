@@ -23,6 +23,10 @@ const Post = ({ match }) => {
       .catch(() => setIsLoading(false));
   }, [id]);
 
+  useEffect(() => {
+    document.title = post.title;
+  }, [post]);
+
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;
 
