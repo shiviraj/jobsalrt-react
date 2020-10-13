@@ -24,7 +24,7 @@ const Post = ({ match }) => {
   }, [id]);
 
   useEffect(() => {
-    document.title = post.title;
+    document.title = (post && post.title) || 'Jobs Alrt Post';
   }, [post]);
 
   if (isLoading) return <Loader />;
