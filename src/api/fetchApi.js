@@ -20,6 +20,8 @@ const fetchApi = (action) => {
       return fetchGet(`/api/syllabus`);
     case 'ADMISSION':
       return fetchGet(`/api/syllabus`);
+    case 'GET_LOCATIONS':
+      return fetchGet(`/api/getLocations`);
     case 'FETCH_POST':
       return fetchGet(`/api/post/${action.id}`);
     default:
