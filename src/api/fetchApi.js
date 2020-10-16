@@ -4,6 +4,17 @@ const fetchGet = async (url) => {
   return await res.json();
 };
 
+const fetchPost = async (url, body) => {
+  const options = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  };
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error();
+  return await res.json();
+};
+
 const fetchApi = (action) => {
   switch (action.type) {
     case 'ALL_JOBS':
@@ -24,6 +35,8 @@ const fetchApi = (action) => {
       return fetchGet(`/api/getLocations`);
     case 'FETCH_POST':
       return fetchGet(`/api/post/${action.id}`);
+    case 'FETCH_POSTS_BY_LOCATION':
+      return fetchPost('/api/postsByLocation', { location: action.location });
     default:
       return new Promise((_r, reject) => reject());
   }
