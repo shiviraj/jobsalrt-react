@@ -52,8 +52,6 @@ const AllJobs = (props) => {
       .catch(() => setIsLoading(false));
   }, [type]);
 
-  if (isLoading) return <Loader />;
-
   return (
     <Section>
       <Title>{type.replace('_', ' ')}</Title>
