@@ -46,7 +46,11 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
-const Row = styled.tr``;
+const Row = styled.tr`
+  &:first-child {
+    font-weight: 600;
+  }
+`;
 const Cell = styled.td`
   padding: 8px;
   border: 1px solid #0c4da2;

@@ -5,6 +5,15 @@ import { Row, Cell, Link, Table } from './Style';
 const PostList = ({ posts }) => {
   return (
     <Table>
+      <Row>
+        <Cell>Company</Cell>
+        <Cell>Title</Cell>
+        <Cell>Last Date</Cell>
+        <Cell className="small">Vacancies</Cell>
+        <Cell className="small">Qualification</Cell>
+        <Cell className="small">Location</Cell>
+        <Cell>View</Cell>
+      </Row>
       {posts.map((post) => {
         return (
           <Row key={post._id}>
