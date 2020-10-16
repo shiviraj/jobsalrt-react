@@ -54,17 +54,10 @@ const Cell = styled.td`
     & {
       padding: 2px;
     }
-  }
-`;
-
-const InnerTable = styled.table`
-  border-collapse: collapse;
-  height: 100%;
-  @media only screen and (max-width: 420px) {
-    & {
+    &.small {
       display: none;
     }
   }
 `;
 
-export { Section, Layout, Title, Link, Row, Cell, Table, InnerTable };
+export { Section, Layout, Title, Link, Row, Cell, Table };
