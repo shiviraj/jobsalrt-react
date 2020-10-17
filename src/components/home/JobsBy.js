@@ -7,6 +7,7 @@ import { Section, Title } from './utils/Style';
 
 const JobsBy = (props) => {
   const [, , name, jobsBy] = props.location.pathname.split('/');
+
   const [list, setList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState(null);
@@ -18,6 +19,7 @@ const JobsBy = (props) => {
   }, [name]);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchApi({ type: 'FETCH_POSTS_BY', payload: { name, jobsBy } })
       .then((result) => {
         setPosts(result);

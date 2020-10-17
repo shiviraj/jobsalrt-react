@@ -1,15 +1,19 @@
+import { NavLink } from 'react-router-dom';
 import React from 'react';
-import { Layout, Link } from './Style';
+
+import { Layout } from './Style';
 
 const Links = ({ list, getLink }) => {
   return (
     <Layout>
-      <Link href={getLink('')}>All</Link>
+      <NavLink to={getLink('')} activeClassName="active" exact>
+        All
+      </NavLink>
       {list.map((item) => {
         return (
-          <Link key={item} href={getLink(item)}>
+          <NavLink key={item} to={getLink(item)} activeClassName="active">
             {item}
-          </Link>
+          </NavLink>
         );
       })}
     </Layout>

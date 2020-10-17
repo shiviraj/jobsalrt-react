@@ -16,6 +16,24 @@ const Section = styled.section`
 const Layout = styled.section`
   display: flex;
   flex-wrap: wrap;
+  & a {
+    border: 1px solid #0c4da2;
+    margin: 8px 16px;
+    padding: 8px 16px;
+    background: #eee;
+    text-decoration: none;
+    color: #0c4da2;
+    @media only screen and (max-width: 420px) {
+      & {
+        margin: 2px;
+        padding: 2px 4px;
+      }
+    }
+  }
+  & .active {
+    background: #888;
+    color: #fff;
+  }
 `;
 
 const Title = styled.h1`
@@ -44,13 +62,12 @@ const Link = styled.a`
 const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
-`;
-
-const Row = styled.tr`
-  &:first-child {
+  & thead {
     font-weight: 600;
   }
 `;
+
+const Row = styled.tr``;
 const Cell = styled.td`
   padding: 8px;
   border: 1px solid #0c4da2;
