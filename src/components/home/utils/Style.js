@@ -43,6 +43,7 @@ const Link = styled.a`
 
 const Table = styled.table`
   border-collapse: collapse;
+  width: 100%;
 `;
 
 const Row = styled.tr`

@@ -31,12 +31,12 @@ const fetchApi = (action) => {
       return fetchGet(`/api/syllabus`);
     case 'ADMISSION':
       return fetchGet(`/api/syllabus`);
-    case 'GET_LOCATIONS':
-      return fetchGet(`/api/getLocations`);
     case 'FETCH_POST':
       return fetchGet(`/api/post/${action.id}`);
-    case 'FETCH_POSTS_BY_LOCATION':
-      return fetchPost('/api/postsByLocation', { location: action.location });
+    case 'GET_LIST':
+      return fetchPost(`/api/getList`, action.payload);
+    case 'FETCH_POSTS_BY':
+      return fetchPost('/api/postsBy', action.payload);
     default:
       return new Promise((_r, reject) => reject());
   }
