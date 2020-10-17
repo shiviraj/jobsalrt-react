@@ -16,7 +16,6 @@ const Section = styled.section`
 const Layout = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 const Title = styled.h1`
