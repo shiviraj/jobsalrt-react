@@ -42,7 +42,6 @@ const HomeNavBar = () => {
       <NavLink to="/home/location">Location Wise</NavLink>
       <NavLink to="/home/company">Department / Company Wise</NavLink>
       <NavLink to="/home/qualification">Qualification Wise</NavLink>
-      <NavLink to="/home/vacancy">Vacancy Wise</NavLink>
     </NavLayout>
   );
 };

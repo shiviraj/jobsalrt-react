@@ -42,6 +42,7 @@ const Title = styled.h1`
   padding: 4px 16px;
   width: 100%;
   font-weight: 500;
+  text-transform: capitalize;
 `;
 
 const Link = styled.a`
@@ -71,6 +72,20 @@ const Row = styled.tr``;
 const Cell = styled.td`
   padding: 8px;
   border: 1px solid #0c4da2;
+  & a {
+    text-decoration: none;
+    color: #0c4da2;
+  }
+  & a::after {
+    content: ',  ';
+  }
+  & a:last-child::after {
+    content: '';
+  }
+  & a:hover {
+    text-decoration: underline;
+    color: blue;
+  }
   @media only screen and (max-width: 420px) {
     & {
       padding: 2px;

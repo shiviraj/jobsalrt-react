@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Category from '../components/home/Category';
-import Vacancy from '../components/home/Vacancy';
 import JobsBy from '../components/home/JobsBy';
 
 const HomeRouter = () => {
@@ -12,7 +11,6 @@ const HomeRouter = () => {
         path={['/home/location', '/home/company', '/home/qualification']}
         component={JobsBy}
       />
-      <Route path="/home/vacancy" component={Vacancy} />
     </Switch>
   );
 };

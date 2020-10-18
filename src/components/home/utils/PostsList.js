@@ -3,6 +3,24 @@ import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import { Row, Cell, Table } from './Style';
 
+const Links = ({ text, prefix }) => {
+  const links = (text && text.split(',')) || [];
+  return (
+    <>
+      {links.map((link) => {
+        return (
+          <NavLink
+            key={link}
+            to={`${prefix}/${link.trim().replace(/ /g, '-')}`}
+          >
+            {link.trim()}
+          </NavLink>
+        );
+      })}
+    </>
+  );
+};
+
 const PostList = ({ posts }) => {
   return (
     <Table>
@@ -21,16 +39,28 @@ const PostList = ({ posts }) => {
         {posts.map((post) => {
           return (
             <Row key={post._id}>
-              <Cell>{post.general.company.replace(/\(.*\)/g, '')}</Cell>
-              <Cell>{post.title}</Cell>
+              <Cell>
+                <Links
+                  text={post.general.company.replace(/\(.*\)/g, '')}
+                  prefix="/home/company"
+                />
+              </Cell>
+              <Cell>
+                <NavLink to={`/post/${post._id}`}>{post.title}</NavLink>
+              </Cell>
               <Cell>
                 {moment(post.general.last_date).format('MMM DD, YYYY')}
               </Cell>
               <Cell className="small">{post.general.total_vacancies}</Cell>
               <Cell className="small">
-                {post.general.qualification_required}
+                <Links
+                  text={post.general.qualification_required}
+                  prefix="/home/qualification"
+                />
               </Cell>
-              <Cell className="small">{post.general.location}</Cell>
+              <Cell className="small">
+                <Links text={post.general.location} prefix="/home/location" />
+              </Cell>
               <Cell>
                 <NavLink to={`/post/${post._id}`}>View</NavLink>
               </Cell>

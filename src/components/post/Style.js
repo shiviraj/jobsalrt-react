@@ -47,6 +47,23 @@ const Cell = styled.div`
   &:last-child {
     border-right: 0;
   }
+
+  & a {
+    text-decoration: none;
+    color: #0c4da2;
+    margin-right: 4px;
+  }
+  & a::after {
+    content: ',  ';
+  }
+  & a:last-child::after {
+    content: '';
+  }
+  & a:hover {
+    text-decoration: underline;
+    color: blue;
+  }
+
   @media only screen and (max-width: 420px) {
     & {
       padding: 2px;
