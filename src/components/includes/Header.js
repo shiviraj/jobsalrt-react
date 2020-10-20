@@ -21,7 +21,7 @@ const Logo = styled.a`
   @media only screen and (max-width: 420px) {
     & {
       font-size: 20px;
-      margin-left: 8px;
+      margin-left: 32px;
     }
   }
 `;
