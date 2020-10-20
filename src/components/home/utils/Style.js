@@ -8,7 +8,7 @@ const Section = styled.section`
   justify-content: space-between;
   @media only screen and (max-width: 420px) {
     & {
-      margin: 2px;
+      margin: 8px 4px;
     }
   }
 `;

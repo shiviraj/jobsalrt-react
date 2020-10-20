@@ -6,7 +6,7 @@ import fetchApi from '../../../api/fetchApi';
 const Section = styled.section`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   border: 1px solid #0c4da2;
-  margin: 8px;
+  margin: 4px;
   width: 30%;
   background: #efefef;
   @media only screen and (max-width: 420px) {

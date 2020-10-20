@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import category from '../../media/icons/category.png';
+import location from '../../media/icons/location.png';
+import company from '../../media/icons/company.png';
+import qualification from '../../media/icons/qualification.png';
 
 const NavLayout = styled.nav`
   display: flex;
@@ -14,6 +18,12 @@ const NavLayout = styled.nav`
     text-decoration: none;
     padding: 8px 32px;
     color: #0c4da2;
+    display: flex;
+    align-items: center;
+  }
+  & a img {
+    display: none;
+    height: 32px;
   }
   & .active {
     border: 1px solid #0c4da2;
@@ -30,6 +40,12 @@ const NavLayout = styled.nav`
     & a {
       padding: 2px 8px;
     }
+    & a img {
+      display: block;
+    }
+    & a span {
+      display: none;
+    }
   }
 `;
 
@@ -37,11 +53,21 @@ const HomeNavBar = () => {
   return (
     <NavLayout>
       <NavLink to="/home" activeClassName="active" exact>
-        Category Wise
+        <img src={category} alt="Category" />
+        <span>Category Wise</span>
       </NavLink>
-      <NavLink to="/home/location">Location Wise</NavLink>
-      <NavLink to="/home/company">Department / Company Wise</NavLink>
-      <NavLink to="/home/qualification">Qualification Wise</NavLink>
+      <NavLink to="/home/location">
+        <img src={location} alt="Location" />
+        <span>Location Wise</span>
+      </NavLink>
+      <NavLink to="/home/company">
+        <img src={company} alt="Company" />
+        <span>Department / Company Wise</span>
+      </NavLink>
+      <NavLink to="/home/qualification">
+        <img src={qualification} alt="Qualification" />
+        <span>Qualification Wise</span>
+      </NavLink>
     </NavLayout>
   );
 };
