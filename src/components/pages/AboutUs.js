@@ -37,6 +37,15 @@ const AboutUs = () => {
         Latest information and details about Govt Jobs Sector. Our staff has
         more than 6 years of experience in this sector.
       </p>
+      <h1>About Admin</h1>
+      <p>
+        Hello, My name is Shivam Rajput. I am an electronics engineer and
+        application developer in ThoughtWorks pvt Ltd. ThoughtWorks is one of
+        the greatest consultant company which has more than 40 offices in more
+        than 14 countries. I completed my Diploma in Electronics Engineering at
+        Government Polytechnic Luknow. I am pursuing BCA at Algappa University
+        in Tamilnadu.
+      </p>
       <h1>Services Offered</h1>
       <p>
         We, at Jobs Alrt, understand, that despite the lucrative nature of

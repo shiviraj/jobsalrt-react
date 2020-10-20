@@ -90,19 +90,29 @@ const Footer = () => {
             <a
               href="https://www.facebook.com/alrt.jobsalrt/?modal=admin_todo_tour"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Facebook Page
             </a>
             <a
               href="https://www.facebook.com/groups/2677640842448736/?ref=bookmarks"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Facebook Group
             </a>
-            <a href="https://twitter.com/ShivamR31533404" target="_blank">
+            <a
+              href="https://twitter.com/ShivamR31533404"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Twitter
             </a>
-            <a href="https://www.instagram.com/alrt.jobsalrt/" target="_blank">
+            <a
+              href="https://www.instagram.com/alrt.jobsalrt/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instagram
             </a>
           </Section>
