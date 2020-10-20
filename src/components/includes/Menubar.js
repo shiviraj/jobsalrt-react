@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import menu from '../../media/icons/menu.png';
 
-const Layout = styled.div``;
 const Home = styled.div`
   display: none;
   margin-top: -28px;
@@ -66,9 +65,9 @@ const Menubar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Layout>
+    <div>
       <Home onClick={() => setIsOpen(!isOpen)}>
-        <img src={menu} />
+        <img src={menu} alt="menu" />
       </Home>
       <Nav className={isOpen ? 'open' : ''} onClick={() => setIsOpen(!isOpen)}>
         <Link to="/home">Home</Link>
@@ -80,7 +79,7 @@ const Menubar = () => {
         <Link to="/syllabus">Syllabus</Link>
         <Link to="/admission">Admission</Link>
       </Nav>
-    </Layout>
+    </div>
   );
 };
 
