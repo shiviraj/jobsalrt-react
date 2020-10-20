@@ -87,9 +87,24 @@ const Footer = () => {
           </Section>
           <Section>
             <h3>Connect with Us</h3>
-            <a href="/connect/facebook">Facebook</a>
-            <a href="/connect/twitter">Twitter</a>
-            <a href="/connect/instagram">Instagram</a>
+            <a
+              href="https://www.facebook.com/alrt.jobsalrt/?modal=admin_todo_tour"
+              target="_blank"
+            >
+              Facebook Page
+            </a>
+            <a
+              href="https://www.facebook.com/groups/2677640842448736/?ref=bookmarks"
+              target="_blank"
+            >
+              Facebook Group
+            </a>
+            <a href="https://twitter.com/ShivamR31533404" target="_blank">
+              Twitter
+            </a>
+            <a href="https://www.instagram.com/alrt.jobsalrt/" target="_blank">
+              Instagram
+            </a>
           </Section>
         </SectionLayout>
       </FooterLayout>
