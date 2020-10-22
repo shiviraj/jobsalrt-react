@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Jobs from './utils/Jobs';
+import RecentPosts from './RecentPosts';
 
 const Sections = styled.section`
   display: flex;
@@ -17,6 +18,7 @@ const Sections = styled.section`
 const Category = () => {
   return (
     <Sections>
+      <RecentPosts />
       <Jobs title="Latest Jobs" />
       <Jobs title="Admit Card" />
       <Jobs title="Results" />

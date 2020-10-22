@@ -96,4 +96,43 @@ const Cell = styled.td`
   }
 `;
 
-export { Section, Layout, Title, Link, Row, Cell, Table };
+const Recently = styled.div`
+  width: 100%;
+  & section {
+    justify-content: flex-start;
+    background: #eee;
+  }
+  & section h1 {
+    background: inherit;
+    color: #333;
+    font-weight: 600;
+  }
+
+  & section a {
+    color: #0c4da2;
+    text-decoration: none;
+  }
+  & section a:hover {
+    text-decoration: underline;
+  }
+`;
+
+const RecentLink = styled.div`
+  width: 45%;
+  margin: 2px;
+  margin-left: 48px;
+  @media only screen and (max-width: 420px) {
+    & {
+      width: 100%;
+      margin-left: 16px;
+    }
+    &:last-child {
+      display: none;
+    }
+    &:nth-last-child(2) {
+      display: none;
+    }
+  }
+`;
+
+export { Section, Layout, Title, Link, Row, Cell, Table, Recently, RecentLink };

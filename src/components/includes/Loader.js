@@ -6,6 +6,7 @@ const LoaderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   padding: 16px;
   margin: 16px;
 `;
@@ -25,7 +26,7 @@ const LoaderLayout = styled.div`
   width: 3.4rem;
   border-radius: 50%;
   border: 4px solid #0c4da2;
-  border-bottom-color: #fff;
+  border-bottom-color: transparent;
   animation: ${LoaderAnimation} 1.5s infinite linear;
 `;
 
