@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Section = styled.section`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   border: 1px solid #0c4da2;
+  border-collapse: collapse;
   margin: 32px;
   @media only screen and (max-width: 420px) {
     & {
@@ -20,15 +21,20 @@ const Title = styled.h1`
   text-transform: capitalize;
 `;
 
-const THead = styled.h3`
-  display: flex;
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const THead = styled.thead`
   border-bottom: 1px solid #0c4da2;
   background: #888;
   font-weight: 600;
 `;
 
-const Row = styled.div`
-  display: flex;
+const TBody = styled.tbody``;
+
+const Row = styled.tr`
   border-bottom: 1px solid #0c4da2;
   &:last-child {
     border-bottom: 0;
@@ -38,10 +44,7 @@ const Row = styled.div`
   }
 `;
 
-const Cell = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
+const Cell = styled.td`
   border-right: 1px solid #0c4da2;
   padding: 4px 16px;
   &:last-child {
@@ -79,4 +82,4 @@ const Link = styled.a`
   }
 `;
 
-export { Section, Title, THead, Row, Cell, Link };
+export { Section, Title, Table, THead, TBody, Row, Cell, Link };

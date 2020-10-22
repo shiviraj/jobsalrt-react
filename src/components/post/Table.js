@@ -1,19 +1,21 @@
 import React from 'react';
-import { Section, Title, THead, Row, Cell } from './Style';
+import { Section, Title, Table, THead, TBody, Row, Cell } from './Style';
 
 const TableHead = ({ data }) => {
   return (
     <THead>
-      {data.map((item) => (
-        <Cell key={item}>{item}</Cell>
-      ))}
+      <Row>
+        {data.map((item, index) => (
+          <Cell key={item + index}>{item}</Cell>
+        ))}
+      </Row>
     </THead>
   );
 };
 
 const TableBody = ({ data }) => {
   return (
-    <>
+    <TBody>
       {data.map((row, rowNo) => {
         return (
           <Row key={row}>
@@ -23,20 +25,22 @@ const TableBody = ({ data }) => {
           </Row>
         );
       })}
-    </>
+    </TBody>
   );
 };
 
-const Table = ({ data, title }) => {
+const TableData = ({ data, title }) => {
   if (!data) return <></>;
   const { head, body } = data;
   return (
     <Section>
       <Title>{title}</Title>
-      {head && <TableHead data={head} />}
-      <TableBody data={body} />
+      <Table>
+        {head && <TableHead data={head} />}
+        <TableBody data={body} />
+      </Table>
     </Section>
   );
 };
 
-export default Table;
+export default TableData;

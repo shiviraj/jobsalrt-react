@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Title, Row, Cell } from './Style';
+import { Section, Title, Table, TBody, Row, Cell } from './Style';
 
 const Array = ({ data, title }) => {
   if (!data) return <></>;
@@ -7,13 +7,17 @@ const Array = ({ data, title }) => {
   return (
     <Section>
       <Title>{title}</Title>
-      {data.map((item, index) => {
-        return (
-          <Row key={item + index}>
-            <Cell>{item}</Cell>
-          </Row>
-        );
-      })}
+      <Table>
+        <TBody>
+          {data.map((item, index) => {
+            return (
+              <Row key={item + index}>
+                <Cell>{item}</Cell>
+              </Row>
+            );
+          })}
+        </TBody>
+      </Table>
     </Section>
   );
 };
