@@ -119,8 +119,11 @@ const Recently = styled.div`
 
 const RecentLink = styled.div`
   width: 45%;
-  margin: 2px;
   margin-left: 48px;
+  &::before {
+    content: '• ';
+    font-size: 20px;
+  }
   @media only screen and (max-width: 420px) {
     & {
       width: 100%;
@@ -130,6 +133,12 @@ const RecentLink = styled.div`
       display: none;
     }
     &:nth-last-child(2) {
+      display: none;
+    }
+    &:nth-last-child(3) {
+      display: none;
+    }
+    &:nth-last-child(4) {
       display: none;
     }
   }

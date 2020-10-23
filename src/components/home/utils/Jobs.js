@@ -87,10 +87,9 @@ const Jobs = ({ title }) => {
     <Section>
       <Title>{title}</Title>
       <List>
-        {isLoading ? (
+        {isLoading || !posts ? (
           <Loader />
         ) : (
-          posts &&
           posts.map((post) => {
             return (
               <ListItem key={post._id}>

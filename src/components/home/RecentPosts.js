@@ -17,7 +17,7 @@ const RecentPosts = () => {
         setIsLoading(false);
       })
       .catch((error) => setIsLoading(false));
-  });
+  }, []);
   return (
     <Recently>
       <Section>
