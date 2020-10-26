@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Menubar from './Menubar';
 
@@ -26,7 +27,7 @@ const Logo = styled.a`
   }
 `;
 
-const Search = styled.div`
+const Search = styled.input`
   background: #fff;
   width: 50%;
   margin: 0 auto;
@@ -34,6 +35,8 @@ const Search = styled.div`
   padding: 4px 16px;
   font-size: 20px;
   color: #333;
+  outline: none;
+  border: 0;
   @media only screen and (max-width: 420px) {
     & {
       padding: 2px 8px;
@@ -42,12 +45,12 @@ const Search = styled.div`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <HeaderLayout>
         <Logo href="/">JobsAlrt</Logo>
-        <Search>search...</Search>
+        <Search placeholder="Serach..." />
       </HeaderLayout>
       <Menubar />
     </>

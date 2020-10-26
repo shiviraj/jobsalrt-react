@@ -13,6 +13,7 @@ const AppRouter = () => {
       <Switch>
         <Route path="/" component={Index} exact />
         <Route path="/home" component={Home} />
+
         <Route
           path={[
             '/all-jobs',
@@ -26,8 +27,8 @@ const AppRouter = () => {
           component={Jobs}
         />
         <Route path="/post/:id" component={Post} />
-        <PageRouter />
-        <Route component={NotFound} />
+        <Route path="/page" component={PageRouter} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </main>
   );
