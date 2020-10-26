@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
 import Disclaimer from '../components/pages/Disclaimer';

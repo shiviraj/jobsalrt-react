@@ -28,6 +28,7 @@ const AppRouter = () => {
         />
         <Route path="/post/:id" component={Post} />
         <Route path="/page" component={PageRouter} />
+        <Route path="/search" />
         <Route path="*" component={NotFound} />
       </Switch>
     </main>

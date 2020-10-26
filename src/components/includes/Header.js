@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Menubar from './Menubar';
+import SearchResult from '../screen/SearchResult';
+import fetchApi from '../../api/fetchApi';
 
 const HeaderLayout = styled.header`
   display: flex;
@@ -46,13 +48,31 @@ const Search = styled.input`
 `;
 
 const Header = (props) => {
+  const history = useHistory();
+  const [value, setValue] = useState('');
+  const [posts, setPosts] = useState(null);
+
+  const location = history.location.pathname;
+
+  useEffect(() => {
+    location !== '/search' && history.push('/search');
+    fetchApi({ type: 'SEARCH', payload: { value } })
+      .then((result) => setPosts(result))
+      .catch(() => {});
+  }, [value]);
+
   return (
     <>
       <HeaderLayout>
         <Logo href="/">JobsAlrt</Logo>
-        <Search placeholder="Serach..." />
+        <Search
+          placeholder="Serach..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
       </HeaderLayout>
       <Menubar />
+      {location === '/search' && <SearchResult posts={posts} value={value} />}
     </>
   );
 };
