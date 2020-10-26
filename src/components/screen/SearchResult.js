@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import SearchContext from '../../context/searchContext';
+import fetchApi from '../../api/fetchApi';
 import PostsList from '../home/utils/PostsList';
 import styled from 'styled-components';
 
@@ -24,7 +26,16 @@ const Title = styled.h1`
   text-transform: capitalize;
 `;
 
-const SearchResult = ({ posts, value }) => {
+const SearchResult = () => {
+  const [posts, setPosts] = useState(null);
+  const { value } = useContext(SearchContext);
+
+  useEffect(() => {
+    fetchApi({ type: 'SEARCH', payload: { value } })
+      .then((result) => setPosts(result))
+      .catch((e) => {});
+  }, [value]);
+
   return (
     <Section>
       <Title>Search: {value}</Title>

@@ -5,6 +5,7 @@ import Post from '../components/screen/Post';
 import Jobs from '../components/screen/Jobs';
 import Home from '../components/screen/Home';
 import Index from '../components/screen/Index';
+import SearchResult from '../components/screen/SearchResult';
 import NotFound from '../components/includes/NotFound';
 
 const AppRouter = () => {
@@ -28,7 +29,7 @@ const AppRouter = () => {
         />
         <Route path="/post/:id" component={Post} />
         <Route path="/page" component={PageRouter} />
-        <Route path="/search" />
+        <Route path="/search" component={SearchResult} />
         <Route path="*" component={NotFound} />
       </Switch>
     </main>
