@@ -7,22 +7,36 @@ const Section = styled.div`
   margin: 32px auto;
   border: 1px solid #0c4da2;
   padding: 16px;
+  @media only screen and (max-width: 420px) {
+    margin: 4px auto;
+    width: 98%;
+    padding: 2px 0;
+  }
 `;
 
 const Title = styled.h2`
   text-transform: capitalize;
   padding: 4px 16px;
   color: #0c4da2;
+  @media only screen and (max-width: 420px) {
+    padding: 2px;
+  }
 `;
 
 const Form = styled.form`
   padding: 4px 16px;
+  @media only screen and (max-width: 420px) {
+    padding: 2px 8px;
+  }
 `;
 
 const InputLayout = styled.div`
   display: flex;
   flex-direction: column;
   margin: 8px 0;
+  @media only screen and (max-width: 420px) {
+    margin: 2px 0;
+  }
 `;
 
 const Label = styled.label`
@@ -38,6 +52,10 @@ const InputField = styled.input`
     color: #333;
     opacity: 0.8;
   }
+  @media only screen and (max-width: 420px) {
+    padding: 2px;
+    font-size: 14px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -48,6 +66,10 @@ const TextArea = styled.textarea`
     font-style: italic;
     color: #333;
     opacity: 0.8;
+  }
+  @media only screen and (max-width: 420px) {
+    padding: 2px;
+    font-size: 14px;
   }
 `;
 
@@ -60,6 +82,9 @@ const Button = styled.button`
   color: #fff;
   background: #0c4da2;
   border: 2px solid #0c4da2;
+  @media only screen and (max-width: 420px) {
+    padding: 2px 16px;
+  }
 `;
 
 const Status = styled.div`
@@ -70,6 +95,9 @@ const Status = styled.div`
   }
   &.success {
     color: green;
+  }
+  @media only screen and (max-width: 420px) {
+    font-size: 16px;
   }
 `;
 
