@@ -64,7 +64,7 @@ const Header = () => {
     <>
       <HeaderLayout>
         <Logo href="/">JobsAlrt</Logo>
-        <Search value={value} onChange={handleChange} />
+        <Search value={value} onChange={handleChange} placeholder="Search..." />
       </HeaderLayout>
       <Menubar />
     </>
