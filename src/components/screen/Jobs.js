@@ -62,7 +62,7 @@ const AllJobs = (props) => {
           posts.map((post) => {
             return (
               <ListItem key={post._id}>
-                <Link href={`/post/${post._id}`}>{post.title}</Link>
+                <Link href={`/post/${post.url}`}>{post.title}</Link>
               </ListItem>
             );
           })

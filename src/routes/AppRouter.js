@@ -27,7 +27,7 @@ const AppRouter = () => {
           ]}
           component={Jobs}
         />
-        <Route path="/post/:id" component={Post} />
+        <Route path="/post/:url" component={Post} />
         <Route path="/page" component={PageRouter} />
         <Route path="/search" component={SearchResult} />
         <Route path="*" component={NotFound} />

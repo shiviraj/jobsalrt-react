@@ -9,23 +9,19 @@ import Array from '../post/Array';
 import ImportantLinks from '../post/ImportantLinks';
 
 const Post = ({ match }) => {
-  const id = match.params.id;
+  const url = match.params.url;
   const [post, setPost] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchApi({ type: 'FETCH_POST', id })
+    fetchApi({ type: 'FETCH_POST', url })
       .then((result) => {
         setPost(result);
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
-  }, [id]);
-
-  useEffect(() => {
-    document.title = (post && post.title) || 'Jobs Alrt Post';
-  }, [post]);
+  }, [url]);
 
   if (isLoading) return <Loader />;
   if (!post) return <NotFound />;

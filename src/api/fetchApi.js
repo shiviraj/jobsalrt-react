@@ -34,7 +34,7 @@ const fetchApi = (action) => {
     case 'ADMISSION':
       return fetchGet(`/api/syllabus`);
     case 'FETCH_POST':
-      return fetchGet(`/api/post/${action.id}`);
+      return fetchGet(`/api/post/${action.url}`);
     case 'GET_LIST':
       return fetchPost(`/api/getList`, action.payload);
     case 'FETCH_POSTS_BY':

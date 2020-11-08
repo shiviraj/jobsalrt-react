@@ -46,7 +46,7 @@ const PostList = ({ posts }) => {
                 />
               </Cell>
               <Cell>
-                <NavLink to={`/post/${post._id}`}>{post.title}</NavLink>
+                <NavLink to={`/post/${post.url}`}>{post.title}</NavLink>
               </Cell>
               <Cell>
                 {moment(post.general.last_date).format('MMM DD, YYYY')}
@@ -62,7 +62,7 @@ const PostList = ({ posts }) => {
                 <Links text={post.general.location} prefix="/home/location" />
               </Cell>
               <Cell>
-                <NavLink to={`/post/${post._id}`}>View</NavLink>
+                <NavLink to={`/post/${post.url}`}>View</NavLink>
               </Cell>
             </Row>
           );
