@@ -28,7 +28,7 @@ const RecentPosts = () => {
           added.map((item) => {
             return (
               <RecentLink key={item._id}>
-                <Link to={`/post/${item._id}`}>{item.title}</Link>
+                <Link to={`/post/${item.url}`}>{item.title}</Link>
               </RecentLink>
             );
           })
@@ -42,7 +42,7 @@ const RecentPosts = () => {
           modified.map((item) => {
             return (
               <RecentLink key={item._id}>
-                <Link to={`/post/${item._id}`}>{item.title}</Link>
+                <Link to={`/post/${item.url}`}>{item.title}</Link>
               </RecentLink>
             );
           })
