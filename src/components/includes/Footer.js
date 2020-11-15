@@ -1,67 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { useScrollTrigger, Fab, Zoom } from '@material-ui/core';
 import { KeyboardArrowUp } from '@material-ui/icons';
 
-const Statement = styled.p`
-  color: #333;
-  padding: 4px 16px;
-  text-align: justify;
-  &:first-letter {
-    font-size: 32px;
-  }
-  @media only screen and (max-width: 420px) {
-    & {
-      padding: 4px 8px;
-    }
-  }
-`;
-
-const FooterLayout = styled.footer`
-  background-color: #0c4da2;
-  padding-bottom: 16px;
-`;
-
-const SectionLayout = styled.section`
-  display: flex;
-  justify-content: space-around;
-  @media only screen and (max-width: 420px) {
-    & {
-      flex-direction: column;
-      padding: 0 16px;
-    }
-  }
-`;
-
-const Section = styled.section`
-  & h3 {
-    color: #fff;
-    padding: 16px 0;
-    padding-bottom: 8px;
-    font-weight: 500;
-  }
-  & a {
-    display: block;
-    color: #c4c4c4;
-    text-decoration: none;
-    padding-left: 16px;
-    line-height: 20px;
-  }
-  & a:hover {
-    color: #eee;
-  }
-  & a:before {
-    content: '• ';
-  }
-`;
+import { Grid, Paper, Typography, Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root: { flexGrow: 1 },
+  scrollTop: {
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  gridContainer: {
+    padding: theme.spacing(2),
+    background: theme.palette.primary.main,
+  },
+  paper: {
+    background: theme.palette.primary.main,
+    boxShadow: 'none',
+    display: 'flex',
+    color: '#fff',
+    flexDirection: 'column',
+    '& h3': {
+      fontSize: theme.spacing(3),
+    },
+    '& a': {
+      color: theme.palette.grey['300'],
+      marginLeft: theme.spacing(3),
+      padding: theme.spacing(1) / 5,
+      width: 'auto',
+    },
+  },
+  text: {
+    padding: theme.spacing(2),
+    textAlign: 'justify',
   },
 }));
 
@@ -86,7 +61,11 @@ const ScrollTop = (props) => {
 
   return (
     <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
+      <div
+        onClick={handleClick}
+        role="presentation"
+        className={classes.scrollTop}
+      >
         {children}
       </div>
     </Zoom>
@@ -99,9 +78,10 @@ ScrollTop.propTypes = {
 };
 
 const Footer = (props) => {
+  const classes = useStyles();
   return (
-    <div>
-      <Statement>
+    <div className={classes.root}>
+      <Typography variant="body1" className={classes.text}>
         JobsAlrt is one of the best government jobs website in India. At
         jobsAlrt we try to bring only those things that are 100% genuine
         (checked by our team) and useful for our users. If you are new on
@@ -115,54 +95,89 @@ const Footer = (props) => {
         <span role="img" aria-label="smile">
           🙂
         </span>
-      </Statement>
-      <FooterLayout>
-        <SectionLayout>
-          <Section>
-            <h3>Important Links</h3>
-            <a href="/page/disclaimer">Disclaimer</a>
-            <a href="/page/terms-of-service">Terms of Services</a>
-            <a href="/page/privacy-policy">Privacy Policy</a>
-          </Section>
-          <Section>
-            <h3>Navigation</h3>
-            <a href="/page/about-us">About Us</a>
-            <a href="/page/contact-us">Contact Us</a>
-            <a href="/page/share-feedback">Share Feedback</a>
-          </Section>
-          <Section>
-            <h3>Connect with Us</h3>
-            <a
-              href="https://www.facebook.com/alrt.jobsalrt/?modal=admin_todo_tour"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Facebook Page
-            </a>
-            <a
-              href="https://www.facebook.com/groups/2677640842448736/?ref=bookmarks"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Facebook Group
-            </a>
-            <a
-              href="https://twitter.com/ShivamR31533404"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
-            </a>
-            <a
-              href="https://www.instagram.com/jobsalrt5/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </a>
-          </Section>
-        </SectionLayout>
-      </FooterLayout>
+      </Typography>
+      <div className={classes.gridContainer}>
+        <Grid container justify="center" spacing={4}>
+          <Grid item xs={12} md={3}>
+            <Paper className={classes.paper}>
+              <Typography variant="h3">Important Links</Typography>
+              <Link component={NavLink} to="/page/disclaimer" color="primary">
+                Disclaimer
+              </Link>
+              <Link
+                component={NavLink}
+                to="/page/terms-of-service"
+                color="primary"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                component={NavLink}
+                to="/page/privacy-policy"
+                color="primary"
+              >
+                Privacy Policy
+              </Link>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Paper className={classes.paper}>
+              <Typography variant="h3">Navigation</Typography>
+              <Link component={NavLink} to="/page/about-us" color="primary">
+                About Us
+              </Link>
+              <Link component={NavLink} to="/page/contact-us" color="primary">
+                Contact Us
+              </Link>
+              <Link
+                component={NavLink}
+                to="/page/share-feedback"
+                color="primary"
+              >
+                Share Feedback
+              </Link>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Paper className={classes.paper}>
+              <Typography variant="h3">Connect with Us</Typography>
+              <Link
+                component="a"
+                href="https://www.facebook.com/alrt.jobsalrt/?modal=admin_todo_tour"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook Page
+              </Link>
+              <Link
+                component="a"
+                href="https://www.facebook.com/groups/2677640842448736/?ref=bookmarks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook Group
+              </Link>
+              <Link
+                component="a"
+                href="https://twitter.com/ShivamR31533404"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Twitter
+              </Link>
+              <Link
+                component="a"
+                href="https://www.instagram.com/jobsalrt5/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </Link>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+
       <ScrollTop {...props}>
         <Fab color="secondary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUp />
