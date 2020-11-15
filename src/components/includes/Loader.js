@@ -1,39 +1,25 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const LoaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 16px;
-  margin: 16px;
-`;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+    margin: theme.spacing(2),
+  },
+}));
 
-const LoaderAnimation = keyframes`
-0% {
-  transform: rotate(0deg);
-}
-100% {
-  transform: rotate(360deg);
-}
-`;
-
-const LoaderLayout = styled.div`
-  display: block;
-  height: 3.4rem;
-  width: 3.4rem;
-  border-radius: 50%;
-  border: 4px solid #0c4da2;
-  border-bottom-color: transparent;
-  animation: ${LoaderAnimation} 1.5s infinite linear;
-`;
-
-const Loader = (props) => (
-  <LoaderContainer>
-    <LoaderLayout />
-  </LoaderContainer>
-);
+const Loader = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <CircularProgress />
+    </div>
+  );
+};
 
 export default Loader;
