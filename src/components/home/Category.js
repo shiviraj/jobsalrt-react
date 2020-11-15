@@ -1,31 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
 import Jobs from './utils/Jobs';
 import RecentPosts from './RecentPosts';
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Sections = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 16px 8px;
-  @media only screen and (max-width: 420px) {
-    & {
-      margin: 4px 2px;
-    }
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+  },
+}));
 
 const Category = () => {
+  const classes = useStyles();
   return (
-    <Sections>
-      <RecentPosts />
-      <Jobs title="Latest Jobs" />
-      <Jobs title="Admit Card" />
-      <Jobs title="Results" />
-      <Jobs title="Answer Key" />
-      <Jobs title="Syllabus" />
-      <Jobs title="Admission" />
-    </Sections>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <RecentPosts />
+        <Jobs title="Latest Jobs" />
+        <Jobs title="Admit Card" />
+        <Jobs title="Results" />
+        <Jobs title="Answer Key" />
+        <Jobs title="Syllabus" />
+        <Jobs title="Admission" />
+      </Grid>
+    </div>
   );
 };
 

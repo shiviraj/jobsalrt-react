@@ -1,79 +1,69 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import Loader from '../../includes/Loader';
 import styled from 'styled-components';
 import fetchApi from '../../../api/fetchApi';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Link, Grid, Paper, Typography, List } from '@material-ui/core';
 
-const Section = styled.section`
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-  border: 1px solid #0c4da2;
-  margin: 4px;
-  width: 30%;
-  background: #efefef;
-  @media only screen and (max-width: 420px) {
-    & {
-      width: 100%;
-    }
-  }
-`;
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
-const Title = styled.h1`
-  color: #fff;
-  background: #0c4da2;
-  padding: 4px;
-  font-size: 20px;
-  text-align: center;
-  font-weight: 500;
-  border: 1px solid #0c4da2;
-`;
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    border: '1px solid #0c4da2',
+    boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.4)',
+    color: theme.palette.text.secondary,
+  },
+  heading: {
+    color: '#fff',
+    background: theme.palette.primary.main,
+    padding: ' 4px',
+    fontSize: ' 20px',
+    textAlign: ' center',
+    fontWeight: ' 500',
+    border: `1px solid ${theme.palette.primary.main}`,
+  },
+  list: {
+    padding: theme.spacing(1) / 10,
+  },
+  listItem: {
+    padding: theme.spacing(1) / 2.5,
+    fontWeight: '200',
+    '&:hover': {
+      background: theme.palette.grey['300'],
+    },
+  },
+  viewMore: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginBottom: theme.spacing(1),
+    marginRight: theme.spacing(2),
+  },
+}));
 
-const List = styled.ul`
-  padding: 4px 32px;
-  @media only screen and (max-width: 420px) {
-    & {
-      padding: 4px 20px;
-    }
-  }
-`;
+function renderRow(props) {
+  const { index, style } = props;
 
-const ListItem = styled.li`
-  padding: 4px;
-  @media only screen and (max-width: 420px) {
-    & {
-      padding: 2px 0;
-    }
-  }
-`;
+  return (
+    <ListItem button style={style} key={index}>
+      <ListItemText primary={`Item ${index + 1}`} />
+    </ListItem>
+  );
+}
 
-const Link = styled.a`
-  text-decoration: none;
-  color: #0c4da2;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 16px 8px 0;
-`;
-
-const ViewMore = styled.a`
-  text-decoration: none;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #0c4df9;
-  transition: all 0.2s;
-  &:hover {
-    margin-right: 8px;
-  }
-`;
+renderRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
+};
 
 const Jobs = ({ title }) => {
+  const classes = useStyles();
   const [posts, setPosts] = useState(null);
   const type = title.replace(' ', '_').toUpperCase();
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetchApi({ type })
       .then((result) => {
@@ -84,27 +74,46 @@ const Jobs = ({ title }) => {
   }, [type]);
 
   return (
-    <Section>
-      <Title>{title}</Title>
-      <List>
-        {isLoading || !posts ? (
-          <Loader />
-        ) : (
-          posts.map((post) => {
-            return (
-              <ListItem key={post._id}>
-                <Link href={`/post/${post.url}`}>{post.title}</Link>
-              </ListItem>
-            );
-          })
-        )}
-      </List>
-      <Footer>
-        <ViewMore href={title.replace(' ', '-').toLowerCase()}>
-          View more
-        </ViewMore>
-      </Footer>
-    </Section>
+    <Grid item sm={12} md={6} lg={4}>
+      <Paper className={classes.paper}>
+        <Typography variant="h3" className={classes.heading}>
+          {title}
+        </Typography>
+        <List component="ul" aria-label="posts" className={classes.list}>
+          {isLoading || !posts ? (
+            <Loader />
+          ) : (
+            posts.map((post) => {
+              return (
+                <Link
+                  component={NavLink}
+                  to={`/post/${post.url}`}
+                  color="primary"
+                >
+                  <ListItem
+                    key={post._id}
+                    className={classes.listItem}
+                    component="li"
+                  >
+                    ⁕ {post.title}
+                  </ListItem>
+                </Link>
+              );
+            })
+          )}
+        </List>
+        <div className={classes.viewMore}>
+          <Button
+            variant="contained"
+            color="primary"
+            component={NavLink}
+            to={`/${title.replace(' ', '-').toLowerCase()}`}
+          >
+            View More
+          </Button>
+        </div>
+      </Paper>
+    </Grid>
   );
 };
 
