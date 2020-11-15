@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import SearchContext from '../../context/searchContext';
 import styled from 'styled-components';
 import Menubar from './Menubar';
+import { Toolbar } from '@material-ui/core';
 
 const HeaderLayout = styled.header`
   display: flex;
@@ -63,6 +64,7 @@ const Header = () => {
   return (
     <>
       <HeaderLayout>
+        <Toolbar id="back-to-top-anchor" />
         <Logo href="/">JobsAlrt</Logo>
         <Search value={value} onChange={handleChange} placeholder="Search..." />
       </HeaderLayout>
