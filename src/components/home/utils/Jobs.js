@@ -1,36 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import Loader from '../../includes/Loader';
 import fetchApi from '../../../api/fetchApi';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Link, Grid, Paper, Typography, List } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
+import { Button, Grid, Paper } from '@material-ui/core';
+import LinkList from '../../utils/LinkList';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     border: '1px solid #0c4da2',
     boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.4)',
     color: theme.palette.text.secondary,
-  },
-  heading: {
-    color: '#fff',
-    background: theme.palette.primary.main,
-    padding: ' 4px',
-    fontSize: ' 20px',
-    textAlign: ' center',
-    fontWeight: ' 500',
-    border: `1px solid ${theme.palette.primary.main}`,
-  },
-  list: {
-    padding: theme.spacing(1) / 10,
-  },
-  listItem: {
-    padding: theme.spacing(1) / 2.5,
-    fontWeight: '200',
-    '&:hover': {
-      background: theme.palette.grey['300'],
+    '& > div': {
+      border: 'none',
+      boxShadow: 'none',
     },
   },
+
   viewMore: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -57,32 +42,7 @@ const Jobs = ({ title }) => {
   return (
     <Grid item sm={12} md={6} lg={4}>
       <Paper className={classes.paper}>
-        <Typography variant="h3" className={classes.heading}>
-          {title}
-        </Typography>
-        <List component="ul" aria-label="posts" className={classes.list}>
-          {isLoading || !posts ? (
-            <Loader />
-          ) : (
-            posts.map((post) => {
-              return (
-                <Link
-                  component={NavLink}
-                  to={`/post/${post.url}`}
-                  color="primary"
-                >
-                  <ListItem
-                    key={post._id}
-                    className={classes.listItem}
-                    component="li"
-                  >
-                    ⁕ {post.title}
-                  </ListItem>
-                </Link>
-              );
-            })
-          )}
-        </List>
+        <LinkList title={title} posts={posts} isLoading={isLoading} />
         <div className={classes.viewMore}>
           <Button
             variant="contained"
