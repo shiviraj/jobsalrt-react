@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px',
     flexGrow: 1,
     display: 'block',
-    [`@media only screen and (max-width: 420px)`]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none',
       height: '0px',
     },
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     '& img': {
       height: '32px',
     },
-    [`@media only screen and (max-width: 420px)`]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
     },
   },
@@ -40,7 +40,7 @@ const HomeNavbar = () => {
   return (
     <>
       <Paper square className={classes.smallView}>
-        <Tabs value={value} onChange={handleChange} indicatorColor="Primary">
+        <Tabs value={value} onChange={handleChange} indicatorColor="primary">
           <Tab
             component={NavLink}
             to="/home"
@@ -67,7 +67,7 @@ const HomeNavbar = () => {
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="Primary"
+          indicatorColor="primary"
           textColor="primary"
         >
           <Tab component={NavLink} to="/home" label="Category" />

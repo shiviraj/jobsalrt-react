@@ -50,6 +50,7 @@ const LinkList = ({ title, posts, isLoading }) => {
                 component={NavLink}
                 to={`/post/${post.url}`}
                 color="primary"
+                key={post._id}
               >
                 <ListItem
                   key={post._id}
