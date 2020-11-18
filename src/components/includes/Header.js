@@ -1,58 +1,86 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import SearchContext from '../../context/searchContext';
-import styled from 'styled-components';
+import { NavLink, useHistory } from 'react-router-dom';
 import Menubar from './Menubar';
-import { Toolbar } from '@material-ui/core';
+import SearchContext from '../../context/searchContext';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
+import { Menu as MenuIcon, Search as SearchIcon } from '@material-ui/icons';
 
-const HeaderLayout = styled.header`
-  display: flex;
-  background: #0c4da2;
-  padding: 8px;
-  @media only screen and (max-width: 420px) {
-    & {
-      padding: 4px;
-    }
-  }
-`;
-
-const Logo = styled.a`
-  font-size: 32px;
-  text-decoration: none;
-  color: #fff;
-  margin-left: 20px;
-  @media only screen and (max-width: 420px) {
-    & {
-      font-size: 20px;
-      margin-left: 32px;
-    }
-  }
-`;
-
-const Search = styled.input`
-  background: #fff;
-  width: 50%;
-  margin: 0 auto;
-  align-self: center;
-  padding: 4px 16px;
-  font-size: 20px;
-  color: #333;
-  outline: none;
-  border: 0;
-  &.hidden {
-    display: none;
-  }
-  @media only screen and (max-width: 420px) {
-    & {
-      padding: 2px 8px;
-      font-size: 16px;
-    }
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    display: 'none',
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+    color: '#fff',
+    textDecoration: 'none',
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
 
 const Header = () => {
+  const classes = useStyles();
   const history = useHistory();
-
+  const [isOpen, setIsOpen] = React.useState(false);
   const { value, setValue } = useContext(SearchContext);
 
   const handleChange = (e) => {
@@ -61,15 +89,58 @@ const Header = () => {
     history.location.pathname !== '/search' && history.push('/search');
   };
 
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setIsOpen(open);
+  };
+
   return (
-    <>
-      <HeaderLayout>
-        <Toolbar id="back-to-top-anchor" />
-        <Logo href="/">JobsAlrt</Logo>
-        <Search value={value} onChange={handleChange} placeholder="Search..." />
-      </HeaderLayout>
-      <Menubar />
-    </>
+    <div className={classes.grow}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            className={classes.title}
+            variant="h4"
+            noWrap
+            component={NavLink}
+            to="/home"
+          >
+            <b>Jobs</b>Alrt
+          </Typography>
+
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              value={value}
+              onChange={handleChange}
+              classes={{ root: classes.inputRoot, input: classes.inputInput }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <Toolbar id="back-to-top-anchor" />
+          <div className={classes.grow} />
+        </Toolbar>
+      </AppBar>
+      <Menubar toggleDrawer={toggleDrawer} isOpen={isOpen} />
+    </div>
   );
 };
 

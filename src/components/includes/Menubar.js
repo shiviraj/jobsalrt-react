@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { Button, List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -70,26 +70,13 @@ const NavList = ({ page }) => {
   );
 };
 
-const MenuBar = () => {
+const MenuBar = ({ isOpen, toggleDrawer }) => {
   const classes = useStyles();
   const history = useHistory();
-  const [isOpen, setIsOpen] = React.useState(false);
   const [page] = React.useState(history.location.pathname);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-    setIsOpen(open);
-  };
 
   return (
     <div>
-      {/* <Button onClick={toggleDrawer(true)}>left</Button> */}
       <SwipeableDrawer
         anchor="left"
         open={isOpen}
