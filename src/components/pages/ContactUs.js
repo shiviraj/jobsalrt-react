@@ -1,109 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import fetchApi from '../../api/fetchApi';
+import { makeStyles } from '@material-ui/core/styles';
+import { Paper, Typography, TextField, Button } from '@material-ui/core';
 
-const Section = styled.div`
-  width: 50%;
-  margin: 32px auto;
-  border: 1px solid #0c4da2;
-  padding: 16px;
-  @media only screen and (max-width: 420px) {
-    margin: 4px auto;
-    width: 98%;
-    padding: 2px 0;
-  }
-`;
-
-const Title = styled.h2`
-  text-transform: capitalize;
-  padding: 4px 16px;
-  color: #0c4da2;
-  @media only screen and (max-width: 420px) {
-    padding: 2px;
-  }
-`;
-
-const Form = styled.form`
-  padding: 4px 16px;
-  @media only screen and (max-width: 420px) {
-    padding: 2px 8px;
-  }
-`;
-
-const InputLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 8px 0;
-  @media only screen and (max-width: 420px) {
-    margin: 2px 0;
-  }
-`;
-
-const Label = styled.label`
-  margin: 4px 0;
-`;
-
-const InputField = styled.input`
-  padding: 4px;
-  outline: none;
-  font-size: 16px;
-  &::placeholder {
-    font-style: italic;
-    color: #333;
-    opacity: 0.8;
-  }
-  @media only screen and (max-width: 420px) {
-    padding: 2px;
-    font-size: 14px;
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 4px;
-  outline: none;
-  font-size: 16px;
-  &::placeholder {
-    font-style: italic;
-    color: #333;
-    opacity: 0.8;
-  }
-  @media only screen and (max-width: 420px) {
-    padding: 2px;
-    font-size: 14px;
-  }
-`;
-
-const Button = styled.button`
-  padding: 8px 32px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  font-weight: 300;
-  color: #fff;
-  background: #0c4da2;
-  border: 2px solid #0c4da2;
-  @media only screen and (max-width: 420px) {
-    padding: 2px 16px;
-  }
-`;
-
-const Status = styled.div`
-  text-align: center;
-  font-size: 20px;
-  &.error {
-    color: red;
-  }
-  &.success {
-    color: green;
-  }
-  @media only screen and (max-width: 420px) {
-    font-size: 16px;
-  }
-`;
+const useStyle = makeStyles((theme) => ({
+  root: { flexGrow: '1' },
+  paper: {
+    margin: theme.spacing(1),
+    [theme.breakpoints.up('sm')]: { margin: '20px auto' },
+    maxWidth: theme.breakpoints.values.sm,
+    border: `1px solid ${theme.palette.primary.main}`,
+    boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.4)',
+  },
+  title: {
+    textTransform: 'capitalize',
+    paddingLeft: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+  },
+  error: { color: theme.palette.error.main },
+  success: { color: theme.palette.success.dark },
+  form: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 const Input = ({ value: defaultValue, label, onChange, ...rest }) => {
   const [value, setValue] = useState(defaultValue);
-
   const handleChange = (e) => {
     const inputValue = e.currentTarget.value;
     onChange(inputValue);
@@ -111,10 +38,13 @@ const Input = ({ value: defaultValue, label, onChange, ...rest }) => {
   };
 
   return (
-    <InputLayout>
-      <Label>{label}</Label>
-      <InputField value={value} onChange={handleChange} {...rest} />
-    </InputLayout>
+    <TextField
+      label={label}
+      variant="outlined"
+      value={value}
+      onChange={handleChange}
+      {...rest}
+    />
   );
 };
 
@@ -126,6 +56,7 @@ const ContactUs = (props) => {
   const [status, setStatus] = useState('');
   const [error, setError] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const classes = useStyle();
 
   const title = props.location.pathname.split('/')[2] || '';
 
@@ -156,39 +87,57 @@ const ContactUs = (props) => {
   };
 
   return (
-    <Section>
-      <Title>{title.replace('-', ' ')}</Title>
-      <Status className={error ? 'error' : 'success'}>{status}</Status>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          value={name}
-          onChange={setName}
-          label="Name *"
-          placeholder="eg. john doe"
-          required
-        />
-        <Input
-          value={email}
-          onChange={setEmail}
-          label="Email *"
-          type="email"
-          placeholder="eg. john@doe.com"
-          required
-        />
-        <Input value={subject} onChange={setSubject} label="Subject" />
-        <InputLayout>
-          <Label>Message *</Label>
-          <TextArea
-            cols="60"
-            rows="10"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+    <div className={classes.root}>
+      <Paper className={classes.paper} variant="outlined">
+        <Typography variant="h4" className={classes.title} color="primary">
+          {title.replace('-', ' ')}
+        </Typography>
+        <form
+          onSubmit={handleSubmit}
+          className={classes.form}
+          autoComplete="off"
+        >
+          <Typography
+            variant="body1"
+            className={error ? classes.error : classes.success}
+          >
+            {status}
+          </Typography>
+
+          <Input
+            value={name}
+            onChange={setName}
+            label="Name"
+            placeholder="eg. john doe"
             required
-          ></TextArea>
-        </InputLayout>
-        <Button disabled={isSending}>Submit</Button>
-      </Form>
-    </Section>
+          />
+          <Input
+            value={email}
+            onChange={setEmail}
+            label="Email"
+            type="email"
+            placeholder="eg. john@doe.com"
+            required
+          />
+          <Input value={subject} onChange={setSubject} label="Subject" />
+          <Input
+            value={message}
+            onChange={setMessage}
+            label="Message"
+            multiline
+            required
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={isSending}
+          >
+            Submit
+          </Button>
+        </form>
+      </Paper>
+    </div>
   );
 };
 
