@@ -1,8 +1,10 @@
 import React from 'react';
+import moment from 'moment';
+import useStyles from './Style';
 import { NavLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import moment from 'moment';
-import { Section, Table, TBody, Title, Row, Cell } from './Style';
+import { Table, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { TableContainer, Paper, Link, Typography } from '@material-ui/core';
 
 const Links = ({ text, prefix }) => {
   const links = (text && text.split(',')) || [];
@@ -10,12 +12,13 @@ const Links = ({ text, prefix }) => {
     <>
       {links.map((link) => {
         return (
-          <NavLink
+          <Link
             key={link}
+            component={NavLink}
             to={`${prefix}/${link.trim().replace(/ /g, '-')}`}
           >
             {link.trim()}
-          </NavLink>
+          </Link>
         );
       })}
     </>
@@ -36,60 +39,67 @@ const SEO = ({ data, title }) => {
           data.form_type
         }. Total vacancies for this post is ${data.total_vacancies || '....'}.`}
       />
-      <meta name="keywords" content={data.keywords} />
+      <meta name="keywords" content={title + data.keywords} />
     </Helmet>
   );
 };
 
 const General = ({ data, title }) => {
+  const classes = useStyles();
   return (
-    <Section>
-      <SEO data={data} title={title} />
-      <Title>{title}</Title>
-      <Table>
-        <TBody>
-          <Row>
-            <Cell>Form Type</Cell>
-            <Cell>{data.form_type}</Cell>
-          </Row>
-          <Row>
-            <Cell>Last Date</Cell>
-            <Cell>{moment(data.last_date).format('MMM DD, YYYY')}</Cell>
-          </Row>
-          {data.total_vacancies && (
-            <Row>
-              <Cell>Total Vacancies</Cell>
-              <Cell>{data.total_vacancies}</Cell>
-            </Row>
-          )}
-          <Row>
-            <Cell>Location</Cell>
-            <Cell>
-              <Links text={data.location} prefix="/home/location" />
-            </Cell>
-          </Row>
-          <Row>
-            <Cell>Company</Cell>
-            <Cell>
-              <Links
-                text={data.company.replace(/\(.*\)/g, '')}
-                prefix="/home/company"
-              />
-              {data.company.replace(/^.*\(/g, ' (')}
-            </Cell>
-          </Row>
-          <Row>
-            <Cell>Qualification Required</Cell>
-            <Cell>
-              <Links
-                text={data.qualification_required}
-                prefix="/home/qualification"
-              />
-            </Cell>
-          </Row>
-        </TBody>
-      </Table>
-    </Section>
+    <div className={classes.root}>
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <SEO data={data} title={title} />
+        <Typography variant="h6" className={classes.title}>
+          {title}
+        </Typography>
+        <Table className={classes.table} aria-label="simple table">
+          <TableBody>
+            <TableRow>
+              <TableCell>Form Type</TableCell>
+              <TableCell>{data.form_type}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Last Date</TableCell>
+              <TableCell>
+                {moment(data.last_date).format('MMM DD, YYYY')}
+              </TableCell>
+            </TableRow>
+            {data.total_vacancies && (
+              <TableRow>
+                <TableCell>Total Vacancies</TableCell>
+                <TableCell>{data.total_vacancies}</TableCell>
+              </TableRow>
+            )}
+            <TableRow>
+              <TableCell>Location</TableCell>
+              <TableCell>
+                <Links text={data.location} prefix="/home/location" />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Company</TableCell>
+              <TableCell>
+                <Links
+                  text={data.company.replace(/\(.*\)/g, '')}
+                  prefix="/home/company"
+                />
+                {data.company.replace(/^.*\(/g, ' (')}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Qualification Required</TableCell>
+              <TableCell>
+                <Links
+                  text={data.qualification_required}
+                  prefix="/home/qualification"
+                />
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 

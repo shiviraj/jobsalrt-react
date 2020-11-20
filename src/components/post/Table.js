@@ -1,45 +1,55 @@
 import React from 'react';
-import { Section, Title, Table, THead, TBody, Row, Cell } from './Style';
 
-const TableHead = ({ data }) => {
+import { TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Table, Paper, TableContainer, Typography } from '@material-ui/core';
+import useStyles from './Style';
+
+const THead = ({ data }) => {
   return (
-    <THead>
-      <Row>
+    <TableHead>
+      <TableRow>
         {data.map((item, index) => (
-          <Cell key={item + index}>{item}</Cell>
+          <TableCell key={item + index}>{item}</TableCell>
         ))}
-      </Row>
-    </THead>
+      </TableRow>
+    </TableHead>
   );
 };
 
-const TableBody = ({ data }) => {
+const TBody = ({ data }) => {
   return (
-    <TBody>
+    <TableBody>
       {data.map((row, rowNo) => {
         return (
-          <Row key={row}>
+          <TableRow key={row}>
             {row.map((item, itemNo) => {
-              return <Cell key={`${item}_${rowNo}_${itemNo}`}>{item}</Cell>;
+              return (
+                <TableCell key={`${item}_${rowNo}_${itemNo}`}>{item}</TableCell>
+              );
             })}
-          </Row>
+          </TableRow>
         );
       })}
-    </TBody>
+    </TableBody>
   );
 };
 
 const TableData = ({ data, title }) => {
+  const classes = useStyles();
   if (!data) return <></>;
   const { head, body } = data;
   return (
-    <Section>
-      <Title>{title}</Title>
-      <Table>
-        {head && <TableHead data={head} />}
-        <TableBody data={body} />
-      </Table>
-    </Section>
+    <div className={classes.root}>
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <Typography variant="h6" className={classes.title}>
+          {title}
+        </Typography>
+        <Table className={classes.table} aria-label="simple table">
+          {head && <THead data={head} />}
+          <TBody data={body} />
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 
