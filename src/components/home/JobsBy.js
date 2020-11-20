@@ -3,9 +3,11 @@ import Links from './utils/Links';
 import Loader from '../includes/Loader';
 import fetchApi from '../../api/fetchApi';
 import PostsList from './utils/PostsList';
-import { Section, Title } from './utils/Style';
+import { Typography, Paper, TableContainer } from '@material-ui/core';
+import useStyles from './utils/Style';
 
 const JobsBy = (props) => {
+  const classes = useStyles();
   const [, , name, jobsBy] = props.location.pathname.split('/');
 
   const [list, setList] = useState(null);
@@ -33,12 +35,18 @@ const JobsBy = (props) => {
   };
 
   return (
-    <Section>
-      <Title>{name} Wise Posts</Title>
-      {list ? <Links list={list} getLink={createLink} /> : <Loader />}
-      <Title>{jobsBy ? jobsBy.replace(/-/g, ' ') : 'All'}</Title>
-      {isLoading ? <Loader /> : <PostsList posts={posts} />}
-    </Section>
+    <div className={classes.root}>
+      <TableContainer className={classes.tableContainer} component={Paper}>
+        <Typography variant="h6" className={classes.title}>
+          {name} Wise Posts
+        </Typography>
+        {list ? <Links list={list} getLink={createLink} /> : <Loader />}
+        <Typography variant="h6" className={classes.title}>
+          {jobsBy ? jobsBy.replace(/-/g, ' ') : 'All'}
+        </Typography>
+        {isLoading ? <Loader /> : <PostsList posts={posts} />}
+      </TableContainer>
+    </div>
   );
 };
 

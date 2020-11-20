@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import moment from 'moment';
-import { Row, Cell, Table } from './Style';
+
+import { TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Table, Link } from '@material-ui/core';
+import useStyles from './Style';
 
 const Links = ({ text, prefix }) => {
   const links = (text && text.split(',')) || [];
@@ -9,12 +12,13 @@ const Links = ({ text, prefix }) => {
     <>
       {links.map((link) => {
         return (
-          <NavLink
+          <Link
+            component={NavLink}
             key={link}
             to={`${prefix}/${link.trim().replace(/ /g, '-')}`}
           >
             {link.trim()}
-          </NavLink>
+          </Link>
         );
       })}
     </>
@@ -22,52 +26,59 @@ const Links = ({ text, prefix }) => {
 };
 
 const PostList = ({ posts }) => {
+  const classes = useStyles();
   return (
-    <Table>
-      <thead>
-        <Row>
-          <Cell>Company</Cell>
-          <Cell>Title</Cell>
-          <Cell>Last Date</Cell>
-          <Cell className="small">Vacancies</Cell>
-          <Cell className="small">Qualification</Cell>
-          <Cell className="small">Location</Cell>
-          <Cell>View</Cell>
-        </Row>
-      </thead>
-      <tbody>
+    <Table className={classes.table} aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell>Company</TableCell>
+          <TableCell>Title</TableCell>
+          <TableCell>Last Date</TableCell>
+          <TableCell className="small">Vacancies</TableCell>
+          <TableCell className="small">Qualification</TableCell>
+          <TableCell className="small">Location</TableCell>
+          <TableCell>View</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {posts.map((post) => {
           return (
-            <Row key={post._id}>
-              <Cell>
+            <TableRow key={post._id}>
+              <TableCell>
                 <Links
                   text={post.general.company.replace(/\(.*\)/g, '')}
                   prefix="/home/company"
                 />
-              </Cell>
-              <Cell>
-                <NavLink to={`/post/${post.url}`}>{post.title}</NavLink>
-              </Cell>
-              <Cell>
+              </TableCell>
+              <TableCell>
+                <Link component={NavLink} to={`/post/${post.url}`}>
+                  {post.title}
+                </Link>
+              </TableCell>
+              <TableCell>
                 {moment(post.general.last_date).format('MMM DD, YYYY')}
-              </Cell>
-              <Cell className="small">{post.general.total_vacancies}</Cell>
-              <Cell className="small">
+              </TableCell>
+              <TableCell className="small">
+                {post.general.total_vacancies}
+              </TableCell>
+              <TableCell className="small">
                 <Links
                   text={post.general.qualification_required}
                   prefix="/home/qualification"
                 />
-              </Cell>
-              <Cell className="small">
+              </TableCell>
+              <TableCell className="small">
                 <Links text={post.general.location} prefix="/home/location" />
-              </Cell>
-              <Cell>
-                <NavLink to={`/post/${post.url}`}>View</NavLink>
-              </Cell>
-            </Row>
+              </TableCell>
+              <TableCell>
+                <Link component={NavLink} to={`/post/${post.url}`}>
+                  View
+                </Link>
+              </TableCell>
+            </TableRow>
           );
         })}
-      </tbody>
+      </TableBody>
     </Table>
   );
 };
