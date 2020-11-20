@@ -1,6 +1,5 @@
 import React from 'react';
 import Jobs from './utils/Jobs';
-import RecentPosts from './RecentPosts';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +15,6 @@ const Category = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <RecentPosts />
         <Jobs title="Latest Jobs" />
         <Jobs title="Admit Card" />
         <Jobs title="Results" />

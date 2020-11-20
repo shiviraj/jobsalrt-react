@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
       height: '0px',
     },
+    '& span': { color: theme.palette.secondary.dark },
+    '& .active span': { color: theme.palette.primary.main },
   },
   smallView: {
     display: 'none',
@@ -45,6 +47,7 @@ const HomeNavbar = () => {
             component={NavLink}
             to="/home"
             icon={<img src={category} alt="category" />}
+            exact
           />
           <Tab
             component={NavLink}
@@ -70,7 +73,7 @@ const HomeNavbar = () => {
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab component={NavLink} to="/home" label="Category" />
+          <Tab component={NavLink} to="/home" label="Category" exact />
           <Tab component={NavLink} to="/home/location" label="Location" />
           <Tab component={NavLink} to="/home/company" label="Company" />
           <Tab

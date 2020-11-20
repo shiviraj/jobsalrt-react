@@ -17,8 +17,6 @@ const fetchPost = async (url, body) => {
 
 const fetchApi = (action) => {
   switch (action.type) {
-    case 'RECENT_POSTS':
-      return fetchGet(`/api/recentPosts`);
     case 'ALL_JOBS':
       return fetchGet(`/api/allJobs`);
     case 'LATEST_JOBS':
