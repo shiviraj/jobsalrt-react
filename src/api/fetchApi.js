@@ -45,6 +45,8 @@ const fetchApi = (action) => {
       return fetchPost('/api/shareFeedback', action.payload);
     case 'SEARCH':
       return fetchPost('/api/search', action.payload);
+    case 'SEARCH_PAGECOUNT':
+      return fetchPost('/api/search/pageCount', action.payload);
     default:
       return new Promise((_r, reject) => reject());
   }

@@ -2,45 +2,39 @@ import React, { useContext, useState, useEffect } from 'react';
 import SearchContext from '../../context/searchContext';
 import fetchApi from '../../api/fetchApi';
 import PostsList from '../home/utils/PostsList';
-import styled from 'styled-components';
+import Pagination from '../utils/Pagination';
+import { Typography, TableContainer, Paper } from '@material-ui/core';
+import useStyles from '../home/utils/Style';
 
-const Section = styled.section`
-  border: 1px solid #0c4da2;
-  margin: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  @media only screen and (max-width: 420px) {
-    & {
-      margin: 8px 4px;
-    }
-  }
-`;
-
-const Title = styled.h1`
-  background: #0c4da2;
-  color: #fff;
-  padding: 4px 16px;
-  width: 100%;
-  font-weight: 500;
-  text-transform: capitalize;
-`;
-
-const SearchResult = () => {
+const SearchResult = ({ location }) => {
+  const classes = useStyles();
   const [posts, setPosts] = useState(null);
   const { value } = useContext(SearchContext);
+  const [pageCount, setPageCount] = useState(1);
+  const [, , , currentPageNo = 1] = location.pathname.split('/');
 
   useEffect(() => {
-    fetchApi({ type: 'SEARCH', payload: { value } })
+    fetchApi({ type: 'SEARCH', payload: { value, currentPageNo } })
       .then((result) => setPosts(result))
       .catch((e) => {});
+  }, [value, currentPageNo]);
+
+  useEffect(() => {
+    fetchApi({ type: 'SEARCH_PAGECOUNT', payload: { value } })
+      .then((result) => setPageCount(result.count))
+      .catch((e) => setPageCount(1));
   }, [value]);
 
   return (
-    <Section>
-      <Title>Search: {value}</Title>
-      {posts && <PostsList posts={posts} />}
-    </Section>
+    <div className={classes.root}>
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <Typography variant="h6" className={classes.title}>
+          Search: {value}
+        </Typography>
+        {posts && <PostsList posts={posts} />}
+      </TableContainer>
+      <Pagination pageCount={pageCount} path="/search" />
+    </div>
   );
 };
 
