@@ -7,7 +7,7 @@ import useStyles from './Style';
 const Links = ({ list, getLink }) => {
   const classes = useStyles();
   const history = useHistory();
-  const url = history.location.pathname;
+  const [, , , page] = history.location.pathname.split('/');
 
   return (
     <List className={classes.links} component="nav">
@@ -15,8 +15,8 @@ const Links = ({ list, getLink }) => {
         button
         component={NavLink}
         to={getLink('')}
-        selected={url === getLink('')}
         role="presentation"
+        className={page ? '' : 'active'}
         exact
       >
         <ListItemText primary="All" />
@@ -29,7 +29,6 @@ const Links = ({ list, getLink }) => {
             key={item}
             component={NavLink}
             to={link}
-            variant={url === link}
             role="presentation"
           >
             <ListItemText primary={item} />

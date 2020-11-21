@@ -7,6 +7,7 @@ import { Table, Link } from '@material-ui/core';
 import useStyles from './Style';
 
 const Links = ({ text, prefix }) => {
+  const classes = useStyles();
   const links = (text && text.split(',')) || [];
   return (
     <>
@@ -16,8 +17,9 @@ const Links = ({ text, prefix }) => {
             component={NavLink}
             key={link}
             to={`${prefix}/${link.trim().replace(/ /g, '-')}`}
+            className={classes.link}
           >
-            {link.trim()}
+            {link.trim()},
           </Link>
         );
       })}

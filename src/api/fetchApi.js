@@ -39,6 +39,8 @@ const fetchApi = (action) => {
       return fetchPost(`/api/getList`, action.payload);
     case 'FETCH_POSTS_BY':
       return fetchPost('/api/postsBy', action.payload);
+    case 'FETCH_POSTS_BY_PAGECOUNT':
+      return fetchPost('/api/postsBy/pageCount', action.payload);
     case 'SHARE_FEEDBACK':
       return fetchPost('/api/shareFeedback', action.payload);
     case 'SEARCH':

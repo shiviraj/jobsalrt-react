@@ -5,14 +5,16 @@ import fetchApi from '../../api/fetchApi';
 import PostsList from './utils/PostsList';
 import { Typography, Paper, TableContainer } from '@material-ui/core';
 import useStyles from './utils/Style';
+import Pagination from '../utils/Pagination';
 
-const JobsBy = (props) => {
+const JobsBy = ({ location }) => {
   const classes = useStyles();
-  const [, , name, jobsBy] = props.location.pathname.split('/');
+  const [, , name, jobsBy, , currentPageNo = 1] = location.pathname.split('/');
 
   const [list, setList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState(null);
+  const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
     fetchApi({ type: 'GET_LIST', payload: { name } })
@@ -22,12 +24,21 @@ const JobsBy = (props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchApi({ type: 'FETCH_POSTS_BY', payload: { name, jobsBy } })
+    fetchApi({
+      type: 'FETCH_POSTS_BY',
+      payload: { name, jobsBy, currentPageNo },
+    })
       .then((result) => {
         setPosts(result);
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
+  }, [name, jobsBy, currentPageNo]);
+
+  useEffect(() => {
+    fetchApi({ type: 'FETCH_POSTS_BY_PAGECOUNT', payload: { name, jobsBy } })
+      .then((result) => setPageCount(result.count))
+      .catch(() => setPageCount(1));
   }, [name, jobsBy]);
 
   const createLink = (item) => {
@@ -46,6 +57,7 @@ const JobsBy = (props) => {
         </Typography>
         {isLoading ? <Loader /> : <PostsList posts={posts} />}
       </TableContainer>
+      <Pagination pageCount={pageCount} path={location.pathname} />
     </div>
   );
 };

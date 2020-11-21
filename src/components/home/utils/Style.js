@@ -51,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
       color: '#fff',
     },
   },
+  link: {
+    '& + a': {
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
 export default useStyles;

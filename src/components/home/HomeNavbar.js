@@ -51,17 +51,17 @@ const HomeNavbar = () => {
           />
           <Tab
             component={NavLink}
-            to="/home/location"
+            to="/home/location/"
             icon={<img src={location} alt="location" />}
           />
           <Tab
             component={NavLink}
-            to="/home/company"
+            to="/home/company/"
             icon={<img src={company} alt="company" />}
           />
           <Tab
             component={NavLink}
-            to="/home/qualification"
+            to="/home/qualification/"
             icon={<img src={qualification} alt="qualification" />}
           />
         </Tabs>
@@ -74,11 +74,11 @@ const HomeNavbar = () => {
           textColor="primary"
         >
           <Tab component={NavLink} to="/home" label="Category" exact />
-          <Tab component={NavLink} to="/home/location" label="Location" />
-          <Tab component={NavLink} to="/home/company" label="Company" />
+          <Tab component={NavLink} to="/home/location/" label="Location" />
+          <Tab component={NavLink} to="/home/company/" label="Company" />
           <Tab
             component={NavLink}
-            to="/home/qualification"
+            to="/home/qualification/"
             label="Qualifications"
           />
         </Tabs>
