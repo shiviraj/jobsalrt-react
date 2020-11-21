@@ -24,7 +24,7 @@ const PaginationLayout = ({ pageCount = 1, path }) => {
         renderItem={(item) => (
           <PaginationItem
             component={NavLink}
-            to={`${path}${item.page === 1 ? '' : `/page/${item.page}`}`}
+            to={`${path}/page/${item.page}`}
             {...item}
           />
         )}
