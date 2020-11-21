@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import fetchApi from '../../api/fetchApi';
 import LinkList from '../utils/LinkList';
 import { Grid } from '@material-ui/core';
@@ -37,7 +37,7 @@ const AllJobs = (props) => {
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
-  }, [type, pathname]);
+  }, [type, currentPageNo]);
 
   useEffect(() => {
     fetchApi({ type: `${type}_PAGECOUNT` })
