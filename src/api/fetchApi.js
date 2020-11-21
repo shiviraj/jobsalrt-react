@@ -18,7 +18,9 @@ const fetchPost = async (url, body) => {
 const fetchApi = (action) => {
   switch (action.type) {
     case 'ALL_JOBS':
-      return fetchGet(`/api/allJobs`);
+      return fetchGet(`/api/allJobs/page/${action.currentPageNo}`);
+    case 'ALL_JOBS_PAGECOUNT':
+      return fetchGet(`/api/allJobs/pageCount`);
     case 'LATEST_JOBS':
       return fetchGet(`/api/latestJobs`);
     case 'ADMIT_CARD':
