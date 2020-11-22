@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1),
     },
   },
+  link: {
+    '& + a': {
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
 export default useStyles;

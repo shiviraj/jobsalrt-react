@@ -7,6 +7,7 @@ import { Table, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { TableContainer, Paper, Link, Typography } from '@material-ui/core';
 
 const Links = ({ text, prefix }) => {
+  const classes = useStyles();
   const links = (text && text.split(',')) || [];
   return (
     <>
@@ -16,8 +17,9 @@ const Links = ({ text, prefix }) => {
             key={link}
             component={NavLink}
             to={`${prefix}/${link.trim().replace(/ /g, '-')}`}
+            className={classes.link}
           >
-            {link.trim()}
+            {link.trim()},
           </Link>
         );
       })}
