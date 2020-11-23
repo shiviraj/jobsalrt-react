@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.light,
     paddingLeft: theme.spacing(1),
     width: 'auto',
+    textTransform: 'capitalize',
   },
   table: {
     '& td, th': {
