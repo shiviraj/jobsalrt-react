@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme) => ({
   links: {
     display: 'flex',
     flexWrap: 'wrap',
+    [theme.breakpoints.down('sm')]: {
+      height: theme.breakpoints.values.sm / 2,
+      overflow: 'auto',
+    },
 
     '& a': {
       width: 'auto',

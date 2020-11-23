@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
   },
 }));
 
