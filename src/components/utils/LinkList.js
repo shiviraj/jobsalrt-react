@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     padding: theme.spacing(1) / 2.5,
-    fontWeight: '200',
     '&:hover': {
       background: theme.palette.grey['300'],
     },

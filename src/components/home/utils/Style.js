@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1) / 2,
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      margin: '0',
+    },
   },
   tableContainer: {
     borderRadius: theme.spacing(1) / 2,

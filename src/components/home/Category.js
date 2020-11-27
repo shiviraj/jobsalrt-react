@@ -8,7 +8,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1),
+      maxWidth: '100%',
+      overflow: 'hidden',
+      padding: theme.spacing(1) / 2,
+      marginTop: theme.spacing(1) / 2,
     },
   },
 }));
@@ -17,7 +20,7 @@ const Category = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Jobs title="Latest Jobs" />
         <Jobs title="Admit Card" />
         <Jobs title="Results" />
