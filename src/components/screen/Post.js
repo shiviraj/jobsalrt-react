@@ -39,8 +39,12 @@ const Post = ({ match }) => {
           <Table key={key} data={others[key]} title={key.replace(/_/g, ' ')} />
         );
       })}
-      <Array data={post.selection_process} title="Selection Process" />
-      <Array data={post.how_to_apply} title="How To Apply" />
+      {post.selection_process.length && (
+        <Array data={post.selection_process} title="Selection Process" />
+      )}
+      {post.how_to_apply.length && (
+        <Array data={post.how_to_apply} title="How To Apply" />
+      )}
       <ImportantLinks data={post.important_links} />
     </article>
   );
