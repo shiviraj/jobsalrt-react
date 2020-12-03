@@ -33,6 +33,12 @@ const fetchApi = (action) => {
       return fetchGet(`/api/syllabus`);
     case 'ADMISSION':
       return fetchGet(`/api/syllabus`);
+    case 'OTHERS':
+      return fetchGet(`/api/others`);
+    case 'UPCOMING':
+      return fetchGet(`/api/upcoming`);
+    case 'EXPIRING_SOON':
+      return fetchGet(`/api/expiringSoon`);
     case 'FETCH_POST':
       return fetchGet(`/api/post/${action.url}`);
     case 'GET_LIST':

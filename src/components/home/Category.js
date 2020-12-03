@@ -27,6 +27,9 @@ const Category = () => {
         <Jobs title="Answer Key" />
         <Jobs title="Syllabus" />
         <Jobs title="Admission" />
+        <Jobs title="Others" />
+        <Jobs title="Upcoming" />
+        <Jobs title="Expiring Soon" />
       </Grid>
     </div>
   );
