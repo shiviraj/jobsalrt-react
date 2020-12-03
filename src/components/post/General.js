@@ -61,43 +61,51 @@ const General = ({ data, title }) => {
               <TableCell>Form Type</TableCell>
               <TableCell>{data.form_type}</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>Last Date</TableCell>
-              <TableCell>
-                {moment(data.last_date).format('MMM DD, YYYY')}
-              </TableCell>
-            </TableRow>
+            {data.last_date && (
+              <TableRow>
+                <TableCell>Last Date</TableCell>
+                <TableCell>
+                  {moment(data.last_date).format('MMM DD, YYYY')}
+                </TableCell>
+              </TableRow>
+            )}
             {data.total_vacancies && (
               <TableRow>
                 <TableCell>Total Vacancies</TableCell>
                 <TableCell>{data.total_vacancies}</TableCell>
               </TableRow>
             )}
-            <TableRow>
-              <TableCell>Location</TableCell>
-              <TableCell>
-                <Links text={data.location} prefix="/home/location" />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Company</TableCell>
-              <TableCell>
-                <Links
-                  text={data.company.replace(/\(.*\)/g, '')}
-                  prefix="/home/company"
-                />
-                {data.company.replace(/^.*\(/g, ' (')}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Qualification Required</TableCell>
-              <TableCell>
-                <Links
-                  text={data.qualification_required}
-                  prefix="/home/qualification"
-                />
-              </TableCell>
-            </TableRow>
+            {data.location && (
+              <TableRow>
+                <TableCell>Location</TableCell>
+                <TableCell>
+                  <Links text={data.location} prefix="/home/location" />
+                </TableCell>
+              </TableRow>
+            )}
+            {data.company && (
+              <TableRow>
+                <TableCell>Company</TableCell>
+                <TableCell>
+                  <Links
+                    text={data.company.replace(/\(.*\)/g, '')}
+                    prefix="/home/company"
+                  />
+                  {data.company.replace(/^.*\(/g, ' (')}
+                </TableCell>
+              </TableRow>
+            )}
+            {data.qualification_required && (
+              <TableRow>
+                <TableCell>Qualification Required</TableCell>
+                <TableCell>
+                  <Links
+                    text={data.qualification_required}
+                    prefix="/home/qualification"
+                  />
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
