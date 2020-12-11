@@ -24,6 +24,9 @@ const AppRouter = () => {
             '/answer-key',
             '/syllabus',
             '/admission',
+            '/others',
+            '/upcoming',
+            '/expiring-soon',
           ]}
           component={Jobs}
         />
