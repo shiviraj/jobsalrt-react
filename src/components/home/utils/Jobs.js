@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #0c4da2',
     boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.4)',
     color: theme.palette.text.secondary,
+    height: '100%',
     '& > div': {
       border: 'none',
       boxShadow: 'none',
